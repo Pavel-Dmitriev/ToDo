@@ -98,6 +98,22 @@ module.exports = {
       ...theme("spacing"),
       ...negative(theme("spacing")),
     }),
+    width: (theme) => ({
+      full: "100%",
+      screen: "100vw",
+      "fit-content": "fit-content",
+      inherit: "inherit",
+      ...theme("spacing"),
+    }),
+    height: (theme) => ({
+      full: "100%",
+      screen: "100vh",
+      "fit-content": "fit-content",
+      inherit: "inherit",
+      ...theme("spacing"),
+      "75%": "75%",
+      "50%": "50%",
+    }),
     maxHeight: (theme) => ({
       ...theme("height"),
       screen: "100vh",
