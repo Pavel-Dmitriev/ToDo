@@ -5,10 +5,10 @@ import TodoWrapper from "components/TodoWrapper";
 
 function Wrapper() {
   return (
-    <div className="grid h-screen grid-cols-[3fr,1fr]">
+    <main className="grid h-screen grid-cols-[3fr,1fr]">
       <TodoWrapper />
       <TodoDetails />
-    </div>
+    </main>
   );
 }
 
