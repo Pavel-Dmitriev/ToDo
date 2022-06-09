@@ -6,7 +6,7 @@ interface ITodoItem {
 
 function TodoItem(props: ITodoItem) {
   return (
-    <li className="flex items-center p-8 pl-12 pr-12 hover:bg-gray-200 focus:bg-blue-100">
+    <li className="flex items-center border-b-1 border-gray-200 pt-14 pl-12 pr-12 pb-14 last:border-none hover:bg-gray-200 focus:bg-blue-100">
       <span className="mr-12 inline-block h-[18px] w-[18px] rounded-full border-1 border-blue-500 bg-transparent"></span>
       <button>
         <span className="text-xs font-normal leading-[20px] text-primary">{props.text}</span>

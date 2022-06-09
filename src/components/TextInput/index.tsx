@@ -14,20 +14,30 @@ function TextInput() {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm<Input>({
     defaultValues: {
       value: "",
     },
   });
-  const { setValue } = useContext(inputContext);
+  const { value, setValue, todos, setTodos } = useContext(inputContext);
 
   const onSubmit: SubmitHandler<Input> = (data) => {
     setValue(data.value);
+    setTodos(data.value);
+    reset({ value: "" });
+    console.log(data);
+  };
+
+  const handleKeyPress = (event: { key: string }) => {
+    if (event.key === "Enter") {
+      handleSubmit(onSubmit);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyPress}>
       <input
         {...register("value")}
         placeholder="Добавить дело"
