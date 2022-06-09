@@ -1,5 +1,3 @@
-import React from "react";
-
 import TextInputWrapper from "components/TextInputWrapper";
 import SortingTodo from "components/SortingTodo";
 import TodoList from "components/TodoList";

@@ -5,9 +5,8 @@ import Dropdown from "components/Dropdown";
 function SortingTodo() {
   return (
     <div>
-      SortingTodo
       <Dropdown
-        button={<button>Text</button>}
+        button={<button>SortingTodo</button>}
         onClose={() => console.log("closed")}
         onOpen={() => console.log("opened")}
       >
