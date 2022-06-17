@@ -1,21 +1,21 @@
-import { useContext } from "react";
+import { useStore } from "effector-react";
 
 import TodoItem from "components/TodoItem";
 
-import { inputContext } from "context/inputContext";
-import { DivWithBackground } from "./styles";
+import { $todoList, toggleTodo } from "./store";
+
+// addTodo.watch((data) => console.log(data));
 
 function TodoList() {
-  const { todos } = useContext(inputContext);
+  // const { todos } = useContext(inputContext);
+  const items = useStore($todoList);
   return (
-    <div className="">
-      <ul>
-        {todos.map((todo: any) => (
-          <TodoItem done={todo.done} text={todo.task} key={todo.id} />
-        ))}
-      </ul>
-      <DivWithBackground />
-    </div>
+    <ul>
+      {items.map((item) => {
+        const { id, text, done } = item;
+        return <TodoItem done={done} text={text} key={id} toggle={() => toggleTodo(item)} />;
+      })}
+    </ul>
   );
 }
 

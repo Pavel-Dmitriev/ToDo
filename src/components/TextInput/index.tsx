@@ -1,45 +1,40 @@
-import { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import { inputContext } from "context/inputContext";
-
 import Button from "components/Button";
+import { addTodo } from "components/TodoList/store";
 
 type Input = {
-  value: string;
+  text: string;
 };
 
 function TextInput() {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors },
   } = useForm<Input>({
     defaultValues: {
-      value: "",
+      text: "",
     },
   });
-  const { value, setValue, todos, setTodos } = useContext(inputContext);
 
-  const onSubmit: SubmitHandler<Input> = (data) => {
-    setValue(data.value);
-    setTodos(data.value);
-    reset({ value: "" });
-    console.log(data);
+  const onSubmit: SubmitHandler<Input> = (data, event) => {
+    event?.preventDefault();
+    addTodo(data);
+    reset({ text: "" });
   };
 
-  const handleKeyPress = (event: { key: string }) => {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLFormElement>) => {
     if (event.key === "Enter") {
-      handleSubmit(onSubmit);
+      handleSubmit(addTodo);
     }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyPress}>
       <input
-        {...register("value")}
+        {...register("text")}
         placeholder="Добавить дело"
         className="mt-8 mr-4 mb-8 ml-8 w-[70%]"
       />

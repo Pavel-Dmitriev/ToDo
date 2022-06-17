@@ -7,8 +7,8 @@ function SortingTodo() {
     <div>
       <Dropdown
         button={<button>SortingTodo</button>}
-        onClose={() => console.log("closed")}
-        onOpen={() => console.log("opened")}
+        // onClose={() => console.log("closed")}
+        // onOpen={() => console.log("opened")}
       >
         <ul>
           <li>One</li>

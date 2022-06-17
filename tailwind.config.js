@@ -19,6 +19,7 @@ module.exports = {
       gray: {
         DEFAULT: "#f3f2f1",
         200: "#edebe9",
+        300: "#797775",
       },
     },
     borderRadius: {
