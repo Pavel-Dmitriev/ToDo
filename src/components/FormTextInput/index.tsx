@@ -1,13 +1,15 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import Button from "components/Button";
+import TextInput from "components/uikit/TextInput";
+
 import { addTodo } from "components/TodoList/store";
 
 type Input = {
   text: string;
 };
 
-function TextInput() {
+function FormTextInput() {
   const {
     register,
     handleSubmit,
@@ -32,15 +34,15 @@ function TextInput() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyPress}>
-      <input
+    <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyPress} className="flex flex-col">
+      <TextInput
         {...register("text")}
         placeholder="Добавить дело"
-        className="mt-8 mr-4 mb-8 ml-8 w-[70%]"
+        className=" mb-8 w-[100%] shadow-[0_-17px_0_-16px_#2564cf_inset] placeholder:text-blue hover:placeholder:text-gray-300 focus:placeholder:text-gray-300"
       />
-      <Button />
+      <Button className="self-end" />
     </form>
   );
 }
 
-export default TextInput;
+export default FormTextInput;

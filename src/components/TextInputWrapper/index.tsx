@@ -1,11 +1,9 @@
-import TextInput from "components/TextInput";
-import Button from "components/Button";
+import FormTextInput from "components/FormTextInput";
 
 function TextInputWrapper() {
   return (
-    <div className=" rounded-4 bg-gray pr-8 pl-8">
-      <TextInput />
-      {/* <Button /> */}
+    <div className=" rounded-4 bg-gray p-12">
+      <FormTextInput />
     </div>
   );
 }

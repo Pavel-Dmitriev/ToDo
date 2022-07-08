@@ -21,6 +21,12 @@ module.exports = {
         200: "#edebe9",
         300: "#797775",
       },
+      red: {
+        DEFAULT: "#e52e2e",
+        100: "#fceaea",
+        600: "#e52e2e",
+        700: "#d51a1a",
+      },
     },
     borderRadius: {
       none: "0",

@@ -1,7 +1,10 @@
 import React from "react";
 
-function Button() {
-  return <button>Button</button>;
+import { IButton } from "./interface";
+
+function Button(props: IButton) {
+  const { className } = props;
+  return <button className={className}>Button</button>;
 }
 
 export default Button;
