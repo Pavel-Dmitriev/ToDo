@@ -1,7 +1,7 @@
 import "effector-logger/inspector";
 
-import Header from "./components/Header";
-import Wrapper from "components/Wrapper";
+import Header from "./components/layouts/Header";
+import Wrapper from "components/layouts/Wrapper";
 
 function App() {
   return (

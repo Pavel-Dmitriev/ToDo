@@ -1,7 +1,7 @@
-import TextInputWrapper from "components/TextInputWrapper";
+import TextInputWrapper from "components/layouts/TextInputWrapper";
 import SortingTodo from "components/SortingTodo";
-import TodoList from "components/TodoList";
-import { DivWithBackground } from "components/TodoList/styles";
+import TodoList from "components/layouts/TodoList";
+import { DivWithBackground } from "components/layouts/TodoList/styles";
 
 function TodoWrapper() {
   return (

@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import { inputContext } from "context/inputContext";
 
-import TodoDetails from "components/TodoDetails";
-import TodoWrapper from "components/TodoWrapper";
+import TodoDetails from "components/layouts/TodoDetails";
+import TodoWrapper from "components/layouts/TodoWrapper";
 
 interface INewItem {
   id: string | number;

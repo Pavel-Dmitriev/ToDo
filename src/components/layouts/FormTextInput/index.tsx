@@ -1,9 +1,9 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import Button from "components/Button";
+import Button from "components/uikit/Button";
 import TextInput from "components/uikit/TextInput";
 
-import { addTodo } from "components/TodoList/store";
+import { addTodo } from "components/layouts/TodoList/store";
 
 type Input = {
   text: string;

@@ -1,6 +1,6 @@
 import { useStore } from "effector-react";
 
-import TodoItem from "components/TodoItem";
+import TodoItem from "components/layouts/TodoItem";
 
 import { $todoList, toggleTodo } from "./store";
 

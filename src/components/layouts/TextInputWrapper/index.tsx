@@ -1,4 +1,4 @@
-import FormTextInput from "components/FormTextInput";
+import FormTextInput from "components/layouts/FormTextInput";
 
 function TextInputWrapper() {
   return (
