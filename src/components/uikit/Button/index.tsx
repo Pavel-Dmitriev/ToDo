@@ -1,10 +1,28 @@
-import React from "react";
+import { StyledButton } from "./styles";
 
-import { IButton } from "./interface";
+import { IProps } from "./interface";
 
-function Button(props: IButton) {
-  const { className } = props;
-  return <button className={className}>Button</button>;
+function Button(props: IProps) {
+  const { name, icon, href, hidden } = props;
+
+  if (hidden) return <></>;
+
+  if (href) {
+    return (
+      <a href={href}>
+        <StyledButton {...props}>
+          {name}
+          {icon}
+        </StyledButton>
+      </a>
+    );
+  }
+  return (
+    <StyledButton {...props}>
+      {name}
+      {icon}
+    </StyledButton>
+  );
 }
 
 export default Button;

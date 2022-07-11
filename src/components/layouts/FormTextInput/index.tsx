@@ -34,13 +34,15 @@ function FormTextInput() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyPress} className="flex flex-col">
+    <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyPress} className="">
       <TextInput
         {...register("text")}
         placeholder="Добавить дело"
         className=" mb-8 w-[100%] shadow-[0_-17px_0_-16px_#2564cf_inset] placeholder:text-blue hover:placeholder:text-gray-300 focus:placeholder:text-gray-300"
       />
-      <Button className="self-end" />
+      <div className="flex justify-end">
+        <Button name="Добавить" className="text-sm text-blue" />
+      </div>
     </form>
   );
 }
