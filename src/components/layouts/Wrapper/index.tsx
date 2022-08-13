@@ -1,48 +1,29 @@
 import { useState } from "react";
 
-import { inputContext } from "context/inputContext";
-
 import TodoDetails from "components/layouts/TodoDetails";
-import TodoWrapper from "components/layouts/TodoWrapper";
+import TextInputWrapper from "components/layouts/TextInputWrapper";
+// import SortingTodo from "components/layouts/SortingTodo";
+import TodoList from "components/layouts/TodoList";
 
-interface INewItem {
-  id: string | number;
-  task: string;
-  selected: boolean;
-  done: boolean;
-}
+import { DivWithBackground } from "components/layouts/TodoList/styles";
+
+import { BooleanType } from "types/types";
 
 function Wrapper() {
-  const [inputValue, setInputValue] = useState<string>("");
-  const [todos, setTodos] = useState<Array<object>>([]);
-  const InputProvider = inputContext.Provider;
-
-  const addTask = (inputValue: string) => {
-    if (inputValue) {
-      const newItem: INewItem = {
-        id: Math.random().toString(36).substring(2, 9),
-        task: inputValue,
-        selected: false,
-        done: false,
-      };
-      setTodos([...todos, newItem]);
-    }
-  };
+  const [open, setOpen] = useState<BooleanType>(false);
 
   return (
-    <InputProvider
-      value={{
-        value: inputValue,
-        setValue: setInputValue,
-        todos: todos,
-        setTodos: addTask,
-      }}
-    >
-      <main className="grid h-screen grid-cols-[3fr,1fr]">
-        <TodoWrapper />
-        <TodoDetails />
-      </main>
-    </InputProvider>
+    <main className="will-change-width flex flex-1 overflow-hidden">
+      <div className="flex flex-1 flex-col overflow-hidden bg-white pt-12 pr-16 pl-16">
+        {/* <SortingTodo /> */}
+        <TextInputWrapper />
+        <div>
+          <TodoList setOpen={setOpen} />
+          <DivWithBackground />
+        </div>
+      </div>
+      <TodoDetails isOpen={open} />
+    </main>
   );
 }
 

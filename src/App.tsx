@@ -5,7 +5,7 @@ import Wrapper from "components/layouts/Wrapper";
 
 function App() {
   return (
-    <div className="App">
+    <div className="flex h-[100%] flex-col">
       <Header />
       <Wrapper />
     </div>
