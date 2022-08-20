@@ -6,6 +6,7 @@ import { ITodoItem } from "./interface";
 export const addTodo = createEvent<any>("addTodo");
 export const toggleTodo = createEvent<ITodoItem>("toggleTodo");
 export const openTodoDetails = createEvent<ITodoItem>("openTodoDetails");
+export const getTodo = createEvent<any>("getTodo");
 
 const toggleTodoItem = (todo: ITodoItem): ITodoItem => ({
   ...todo,
@@ -15,6 +16,10 @@ const toggleTodoItem = (todo: ITodoItem): ITodoItem => ({
 const toggleTodoDetails = (todo: ITodoItem): ITodoItem => ({
   ...todo,
   isOpen: !todo.isOpen,
+});
+
+const getTodoItem = (todo: ITodoItem) => ({
+  ...todo,
 });
 
 export const $todoList = createStore<ITodoItem[]>([])
@@ -39,4 +44,5 @@ export const $todoList = createStore<ITodoItem[]>([])
             isOpen: false,
           },
     ),
-  );
+  )
+  .on(getTodo, (list, todo) => list.map((item) => (item === todo ? getTodoItem(todo) : item)));

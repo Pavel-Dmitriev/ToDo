@@ -1,18 +1,17 @@
-import { useStore } from "effector-react";
-import { useState } from "react";
 import clsx from "clsx";
 
 import TodoReminder from "components/TodoReminder";
 import TodoCategory from "components/TodoCategory";
 import TodoNote from "components/TodoNote";
 
+import useDetailsData from "components/layouts/TodoDetails/hooks/useDetailsData";
+
 import { BooleanType } from "types/types";
 
-import { $todoList } from "../TodoList/store";
+function TodoDetails(props: { isOpen: BooleanType; id: string }) {
+  const { isOpen, id } = props;
 
-function TodoDetails({ isOpen }: { isOpen: BooleanType }) {
-  // const todoList = useStore($todoList);
-  // const [open, setOpen] = useState<BooleanType>(false);
+  const todoItem = useDetailsData(id, isOpen);
 
   return (
     <aside
@@ -22,6 +21,9 @@ function TodoDetails({ isOpen }: { isOpen: BooleanType }) {
       })}
     >
       <div className="mt-10 flex-1 overflow-auto overflow-x-hidden px-10 pb-16">
+        <div className="mb-8 flex items-center rounded-default bg-white p-16 font-semibold leading-5">
+          {todoItem?.text}
+        </div>
         <TodoCategory />
         <TodoReminder />
         <TodoNote />

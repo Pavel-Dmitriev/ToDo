@@ -6,9 +6,9 @@ import { $todoList, openTodoDetails, toggleTodo } from "./store";
 
 // addTodo.watch((data) => console.log(data));
 
-function TodoList({ setOpen }: any) {
-  // const { todos } = useContext(inputContext);
+function TodoList({ setOpen, setId }: any) {
   const items = useStore($todoList);
+
   return (
     <ul>
       {items.map((item) => {
@@ -20,7 +20,10 @@ function TodoList({ setOpen }: any) {
             key={`todo_item_${id}`}
             id={id}
             toggle={() => toggleTodo(item)}
-            toggleTodoDetails={() => openTodoDetails(item)}
+            toggleTodoDetails={() => {
+              setId(id);
+              openTodoDetails(item);
+            }}
             isOpen={isOpen}
             setOpen={setOpen}
           />

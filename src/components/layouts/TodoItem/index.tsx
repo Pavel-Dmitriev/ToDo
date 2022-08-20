@@ -4,11 +4,9 @@ import CheckIcon from "@mui/icons-material/Check";
 
 import { Span } from "./styles";
 
-import { ITodoItem } from "../TodoList/interface";
-
+// TODO нормально типизиовать пропсы.
 function TodoItem(props: any) {
   const { id, text, done, toggle, toggleTodoDetails, setOpen, isOpen } = props;
-  console.log("🚀 ~ file: index.tsx ~ line 11 ~ TodoItem ~ isOpen", isOpen);
 
   const handleOpenDetails = () => {};
 

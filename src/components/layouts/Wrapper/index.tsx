@@ -11,6 +11,7 @@ import { BooleanType } from "types/types";
 
 function Wrapper() {
   const [open, setOpen] = useState<BooleanType>(false);
+  const [id, setId] = useState<string>("");
 
   return (
     <main className="will-change-width flex flex-1 overflow-hidden">
@@ -18,11 +19,11 @@ function Wrapper() {
         {/* <SortingTodo /> */}
         <TextInputWrapper />
         <div>
-          <TodoList setOpen={setOpen} />
+          <TodoList setOpen={setOpen} setId={setId} />
           <DivWithBackground />
         </div>
       </div>
-      <TodoDetails isOpen={open} />
+      <TodoDetails isOpen={open} id={id} />
     </main>
   );
 }
