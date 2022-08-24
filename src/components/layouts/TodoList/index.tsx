@@ -1,17 +1,22 @@
+import { useEffect } from "react";
 import { useStore } from "effector-react";
 
 import TodoItem from "components/layouts/TodoItem";
 
-import { $todoList, openTodoDetails, toggleTodo } from "./store";
+import { $todoList, getTodos, openTodoDetails, toggleTodo } from "./store";
 
 // addTodo.watch((data) => console.log(data));
 
 function TodoList({ setOpen, setId }: any) {
   const items = useStore($todoList);
 
+  useEffect(() => {
+    getTodos();
+  }, []);
+
   return (
     <ul>
-      {items.map((item) => {
+      {items?.map((item) => {
         const { id, text, done, isOpen } = item;
         return (
           <TodoItem
