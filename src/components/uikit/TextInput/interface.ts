@@ -1,13 +1,11 @@
 import { InputHTMLAttributes } from "react";
 
-import { BooleanType } from "types/types";
-
 export default interface IProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  inline?: BooleanType;
+  inline?: boolean;
   description?: string;
   labelClassName?: string;
-  error?: BooleanType;
+  error?: boolean;
   errorText?: string;
   asDisplay?: "transparent";
 }
