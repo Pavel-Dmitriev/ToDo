@@ -2,18 +2,16 @@ import clsx from "clsx";
 
 import CheckIcon from "@mui/icons-material/Check";
 
-import { Span } from "./styles";
+import { List, Span } from "./styles";
 
 // TODO нормально типизиовать пропсы.
 function TodoItem(props: any) {
-  const { id, text, done, toggle, toggleTodoDetails, setOpen, isOpen } = props;
-
-  const handleOpenDetails = () => {};
+  const { id, text, category, done, toggle, onToggleTodoDetails, isOpen } = props;
 
   return (
-    <li
+    <List
       className={clsx(
-        "flex items-center border-b-1 border-gray-200 pt-14 pl-12 pr-12 pb-14 last:border-none hover:bg-gray-200 focus:bg-blue-100",
+        "mb-8 flex items-center rounded-default border-b-1 border-gray-200 bg-white pt-14 pl-12 pr-12 pb-14 last:mb-0 last:border-none hover:bg-blue-100 focus:bg-blue-100",
         {
           "bg-blue-100": isOpen,
         },
@@ -26,13 +24,26 @@ function TodoItem(props: any) {
           </i>
         )}
       </Span>
-      <button
-        className={clsx({ "text-gray-300 line-through decoration-gray-300": props.done })}
-        onClick={() => toggleTodoDetails(setOpen(!isOpen))}
-      >
-        {text}
-      </button>
-    </li>
+      <div className="cursor-pointer">
+        <button
+          className={clsx({ "text-gray-300 line-through decoration-gray-300": props.done })}
+          onClick={() => onToggleTodoDetails(id)}
+        >
+          <span>{text}</span>
+        </button>
+        {category && (
+          <div>
+            <span
+              className={clsx("max-w-150 text-2xs ", {
+                "text-yellow": true,
+              })}
+            >
+              {category}
+            </span>
+          </div>
+        )}
+      </div>
+    </List>
   );
 }
 

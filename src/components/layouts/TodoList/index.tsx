@@ -3,41 +3,49 @@ import { useStore } from "effector-react";
 
 import TodoItem from "components/layouts/TodoItem";
 
+import NoData from "components/uikit/NoData";
+
 import { $todoList, getTodos, openTodoDetails, toggleTodo } from "./store";
 import { setLocalStorageTodos } from "api/localStorage";
 
-function TodoList({ setOpen, setId }: any) {
+function TodoList({ setIsOpen, setId }: any) {
   const items = useStore($todoList);
 
   useEffect(() => {
     getTodos();
   }, []);
 
+  if (!items?.length) return <NoData />;
+
   return (
     <ul>
-      {items?.map((item) => {
-        const { id, text, done, isOpen } = item;
+      {items?.map((item: any) => {
+        const { id, text, category, done, isOpen } = item;
 
         const toggleTodoItem = () => {
           toggleTodo(item);
         };
 
-        const toggleTodoDetails = () => {
+        const onToggleTodoDetails = () => {
           setId(id);
           openTodoDetails(item);
+          setIsOpen();
         };
 
         setLocalStorageTodos(items);
+
         return (
           <TodoItem
             done={done}
             text={text}
+            category={category}
             key={`todo_item_${id}`}
             id={id}
             toggle={toggleTodoItem}
-            toggleTodoDetails={toggleTodoDetails}
+            onToggleTodoDetails={onToggleTodoDetails}
             isOpen={isOpen}
-            setOpen={setOpen}
+            setOpen={setIsOpen}
+            // deleteTodo={handleDeleteTodo}
           />
         );
       })}

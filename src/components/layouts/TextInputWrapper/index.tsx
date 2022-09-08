@@ -2,7 +2,7 @@ import FormTextInput from "components/layouts/FormTextInput";
 
 function TextInputWrapper() {
   return (
-    <div className="rounded-4 bg-gray p-12">
+    <div className="mb-12 rounded-4 bg-white p-12">
       <FormTextInput />
     </div>
   );

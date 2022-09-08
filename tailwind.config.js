@@ -18,6 +18,7 @@ module.exports = {
       },
       gray: {
         DEFAULT: "#f3f2f1",
+        100: "#f6f6f5",
         200: "#edebe9",
         300: "#797775",
       },
@@ -26,6 +27,9 @@ module.exports = {
         100: "#fceaea",
         600: "#e52e2e",
         700: "#d51a1a",
+      },
+      yellow: {
+        DEFAULT: "#7a7400",
       },
     },
     borderRadius: {

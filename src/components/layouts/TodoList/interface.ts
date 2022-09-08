@@ -1,11 +1,12 @@
-import { BooleanType } from "types/types";
+import { Category } from "types/types";
 
 export interface ITodoItem {
   id: string;
   text: string;
-  category?: "Желтая категория" | "Синяя категория" | "Красная категория" | null;
-  done: BooleanType;
+  category?: Category;
+  done: boolean;
   toggle?: () => {};
-  isOpen: BooleanType;
+  isOpen: boolean;
   toggleTodoDetails?: () => {};
+  createdAt: Date | string;
 }
