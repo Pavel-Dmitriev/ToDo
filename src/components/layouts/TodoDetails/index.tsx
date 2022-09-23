@@ -13,42 +13,64 @@ import { Aside } from "./styles";
 import useDetailsDataById from "./hooks/useDetailsDataById";
 
 import { ITodoDetails } from "./interface";
+import { FormProvider, useForm } from "react-hook-form";
+import { updateTodo } from "../TodoList/store";
 
 function TodoDetails(props: any) {
   const { isOpen, id, onClose, onDeleteTodo } = props;
+
+  const methods = useForm({
+    defaultValues: {
+      id: id,
+      note: "",
+    },
+  });
+  const { handleSubmit, reset } = methods;
 
   const todoItem = useDetailsDataById(id, isOpen);
 
   const createdAt = dayjs(todoItem?.createdAt).format("DD.MM.YYYY");
 
+  const onSubmit = (data: any, e: any) => {
+    e.preventDefault();
+    console.log(`onSubmit: data = ${JSON.stringify(data)}, event = ${e}`);
+    updateTodo({ ...todoItem, note: data.note });
+    reset();
+  };
+
   return (
-    <Aside
-      className={clsx(
-        "flex w-[360px] max-w-[360px] flex-1 flex-col bg-gray transition-[width] duration-300 ease-out",
-      )}
-      // className={clsx("bg-gray transition-[width] duration-300 ease-out", {
-      //   "flex w-[360px] max-w-[360px] flex-1 flex-col": isOpen,
-      //   "hidden w-[0]": !isOpen,
-      // })}
-    >
-      <div className="mt-10 flex-1 overflow-y-auto overflow-x-hidden px-10 pb-16">
-        <div className="mb-8 flex items-center rounded-default bg-white p-16 font-semibold leading-5">
-          {todoItem?.text}
+    <FormProvider {...methods}>
+      <Aside
+        className={clsx(
+          "flex w-[360px] max-w-[360px] flex-1 flex-col bg-gray transition-[width] duration-300 ease-out",
+        )}
+        // className={clsx("bg-gray transition-[width] duration-300 ease-out", {
+        //   "flex w-[360px] max-w-[360px] flex-1 flex-col": isOpen,
+        //   "hidden w-[0]": !isOpen,
+        // })}
+      >
+        <form
+          className="mt-10 flex-1 overflow-y-auto overflow-x-hidden px-10 pb-16"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div className="mb-8 flex items-center rounded-default bg-white p-16 font-semibold leading-5">
+            {todoItem?.title}
+          </div>
+          <TodoCategory category={todoItem?.category} />
+          <TodoReminder />
+          <TodoNote textNote={todoItem?.note} />
+        </form>
+        <div className="mx-10 flex items-center justify-between border-t-1 border-gray-200 py-16">
+          <button onClick={() => onClose(todoItem!)}>
+            <CloseCard />
+          </button>
+          <span className="text-2xs text-gray-300">Создано {createdAt}</span>
+          <button onClick={() => onDeleteTodo(todoItem)}>
+            <DeleteIcon fontSize="small" />
+          </button>
         </div>
-        <TodoCategory category={todoItem?.category} />
-        <TodoReminder />
-        <TodoNote />
-      </div>
-      <div className="mx-10 flex items-center justify-between border-t-1 border-gray-200 py-16">
-        <button onClick={() => onClose(todoItem!)}>
-          <CloseCard />
-        </button>
-        <span className="text-2xs text-gray-300">Создано {createdAt}</span>
-        <button onClick={() => onDeleteTodo(todoItem)}>
-          <DeleteIcon fontSize="small" />
-        </button>
-      </div>
-    </Aside>
+      </Aside>
+    </FormProvider>
   );
 }
 

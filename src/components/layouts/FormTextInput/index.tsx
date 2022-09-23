@@ -6,7 +6,7 @@ import TextInput from "components/uikit/TextInput";
 import { addTodo } from "components/layouts/TodoList/store";
 
 type Input = {
-  text: string;
+  title: string;
 };
 
 function FormTextInput() {
@@ -17,14 +17,14 @@ function FormTextInput() {
     formState: { errors },
   } = useForm<Input>({
     defaultValues: {
-      text: "",
+      title: "",
     },
   });
 
   const onSubmit: SubmitHandler<Input> = (data, event) => {
     event?.preventDefault();
     addTodo(data);
-    reset({ text: "" });
+    reset({ title: "" });
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLFormElement>) => {
@@ -36,7 +36,7 @@ function FormTextInput() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyPress} className="">
       <TextInput
-        {...register("text")}
+        {...register("title")}
         placeholder="Добавить дело"
         className=" mb-8 w-[100%] shadow-[0_-17px_0_-16px_#2564cf_inset] placeholder:text-blue hover:placeholder:text-gray-300 focus:placeholder:text-gray-300"
       />

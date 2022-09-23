@@ -19,10 +19,10 @@ export function setLocalStorageTodos(todos: ITodoItem[]) {
 //   return history ?? [];
 // });
 
-// export const todoSetFx = createEffect(({ text }: ITodoItem) => {
+// export const todoSetFx = createEffect(({ title }: ITodoItem) => {
 //   const todo = {
 //     id: Math.random().toString(36).substring(2, 9),
-//     text,
+//     title,
 //     done: false,
 //     isOpen: false,
 //   };

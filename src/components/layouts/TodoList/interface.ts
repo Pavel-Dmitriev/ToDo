@@ -2,7 +2,8 @@ import { Category } from "types/types";
 
 export interface ITodoItem {
   id: string;
-  text: string;
+  title: string;
+  note: string;
   category?: Category;
   done: boolean;
   toggle?: () => {};

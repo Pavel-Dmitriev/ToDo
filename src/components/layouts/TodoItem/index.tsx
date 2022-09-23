@@ -3,10 +3,11 @@ import clsx from "clsx";
 import CheckIcon from "@mui/icons-material/Check";
 
 import { List, Span } from "./styles";
+import NoteIcon from "components/uikit/icons/NoteIcon";
 
 // TODO нормально типизиовать пропсы.
 function TodoItem(props: any) {
-  const { id, text, category, done, toggle, onToggleTodoDetails, isOpen } = props;
+  const { id, title, textNote, category, done, toggle, onToggleTodoDetails, isOpen } = props;
 
   return (
     <List
@@ -29,8 +30,15 @@ function TodoItem(props: any) {
           className={clsx({ "text-gray-300 line-through decoration-gray-300": props.done })}
           onClick={() => onToggleTodoDetails(id)}
         >
-          <span>{text}</span>
+          <span>{title}</span>
         </button>
+        {textNote && (
+          <div className="flex items-center">
+            <NoteIcon className="mr-4" />
+            <span className="text-[10px] leading-[14px] text-primary">{textNote}</span>
+          </div>
+        )}
+
         {category && (
           <div>
             <span
