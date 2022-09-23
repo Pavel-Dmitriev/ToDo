@@ -3,9 +3,7 @@ import { StyledButton } from "./styles";
 import { IProps } from "./interface";
 
 function Button(props: IProps) {
-  const { name, icon, href, hidden } = props;
-
-  if (hidden) return <></>;
+  const { name, icon, href } = props;
 
   if (href) {
     return (
