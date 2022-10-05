@@ -1,15 +1,26 @@
 import { useState } from "react";
-import { Controller, useFormContext } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import clsx from "clsx";
+
 import EditIcon from "@mui/icons-material/Edit";
 
 import Button from "components/uikit/Button";
 import Textarea from "components/uikit/Textarea";
 
-function TodoNote({ textNote }: any) {
+import { updateTodo } from "components/layouts/TodoList/store";
+
+function TodoNote({ textNote, todoItem }: any) {
   const [activeNote, setActiveNote] = useState<boolean>(false);
 
-  const { register, setValue } = useFormContext();
+  const { register, setValue, reset, handleSubmit } = useFormContext();
+
+  const onSubmit = (data: any, e: any) => {
+    e.preventDefault();
+    console.log(`onSubmit: data = ${JSON.stringify(data)}`);
+    updateTodo({ ...todoItem, note: data.note });
+    setActiveNote(false);
+    reset();
+  };
 
   return (
     <div>
@@ -66,9 +77,7 @@ function TodoNote({ textNote }: any) {
         <Button
           type="submit"
           name="Добавить"
-          onClick={() => {
-            setActiveNote(false);
-          }}
+          onClick={handleSubmit(onSubmit)}
           // disabled={!watchNote}
           hidden={!activeNote}
           className="text-xs hover:text-blue"

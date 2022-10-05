@@ -1,4 +1,4 @@
-export type Category =
+export type Сategories =
   | "Желтая категория"
   | "Синяя категория"
   | "Красная категория"

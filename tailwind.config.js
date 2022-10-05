@@ -14,6 +14,8 @@ module.exports = {
       blue: {
         DEFAULT: "#2564cf",
         100: "#ecf6fd",
+        200: "#e0f7fd",
+        400: "#007899",
         500: "#3e69e4",
       },
       gray: {
@@ -25,11 +27,22 @@ module.exports = {
       red: {
         DEFAULT: "#e52e2e",
         100: "#fceaea",
+        200: "#fce9ea",
+        400: "#d01b2a",
         600: "#e52e2e",
         700: "#d51a1a",
       },
       yellow: {
-        DEFAULT: "#7a7400",
+        200: "#fffde0",
+        400: "#7a7400",
+      },
+      orange: {
+        200: "#fff1e0",
+        400: "#a35a00",
+      },
+      green: {
+        200: "#e9f9e8",
+        400: "#257e20",
       },
     },
     borderRadius: {

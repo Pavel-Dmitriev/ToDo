@@ -1,39 +1,40 @@
-import Dropdown from "components/uikit/Dropdown";
+import { useFormContext } from "react-hook-form";
+
 import Select from "components/uikit/Select";
+import Button from "components/uikit/Button";
 
-import { Category } from "types/types";
+import { OPTIONS } from "./constants";
 
-function TodoCategory({ category }: { category: Category }) {
-  const options = [
-    { value: "ocean", label: "Ocean", color: "#00B8D9", isFixed: true },
-    { value: "blue", label: "Blue", color: "#0052CC", isDisabled: true },
-    { value: "purple", label: "Purple", color: "#5243AA" },
-    { value: "red", label: "Red", color: "#FF5630", isFixed: true },
-    { value: "orange", label: "Orange", color: "#FF8B00" },
-    { value: "yellow", label: "Yellow", color: "#FFC400" },
-    { value: "green", label: "Green", color: "#36B37E" },
-    { value: "forest", label: "Forest", color: "#00875A" },
-    { value: "slate", label: "Slate", color: "#253858" },
-    { value: "silver", label: "Silver", color: "#666666" },
-  ];
+import { updateTodo } from "components/layouts/TodoList/store";
+
+import { ITodoItem } from "components/layouts/TodoList/interface";
+
+function TodoCategory({ todoItem }: { todoItem: ITodoItem | undefined }) {
+  const { reset, handleSubmit } = useFormContext();
+
+  const onSubmit = (data: any, e: any) => {
+    e.preventDefault();
+    updateTodo({ ...todoItem, categories: data.categories });
+    // reset();
+  };
+
   return (
     <div className="mb-8 rounded-default bg-white p-16">
       <Select
-        // blurInputOnSelect={false}
+        name="categories"
         closeMenuOnSelect={false}
-        // defaultValue={[colourOptions[0], colourOptions[1]]}
         isMulti
-        options={options}
-        // styles={colourStyles}
+        options={OPTIONS}
+        placeholder="Выберите категорию"
       />
-      {/* <Dropdown
-        button={<button>Выбрать категорию</button>}
-        children={
-          <ul>
-            <li>Желтая категория</li>
-          </ul>
-        }
-      /> */}
+      <div className="mt-4 flex items-center justify-end">
+        <Button
+          type="submit"
+          name="Добавить"
+          onClick={handleSubmit(onSubmit)}
+          className="text-xs hover:text-blue"
+        />
+      </div>
     </div>
   );
 }

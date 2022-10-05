@@ -1,5 +1,5 @@
 import { getLocalStorageTodos, setLocalStorageTodos } from "api/localStorage";
-import { createEvent, createStore, sample } from "effector-logger";
+import { createEvent, createStore } from "effector-logger";
 
 import { ITodoItem } from "./interface";
 
@@ -30,14 +30,14 @@ export const $todoList = createStore<ITodoItem[]>([])
     list.map((item) => (item === todo ? toggleTodoItem(todo) : item)),
   )
   .on(addTodo, (list, data: ITodoItem): ITodoItem[] => {
-    const { title, note = "", category = null } = data;
+    const { title, note = "", categories = null } = data;
     const todos = [
       ...list,
       {
         id: Math.random().toString(36).substring(2, 9),
         title,
         note,
-        category,
+        categories,
         done: false,
         isOpen: false,
         createdAt: new Date(),
@@ -47,7 +47,9 @@ export const $todoList = createStore<ITodoItem[]>([])
     return todos;
   })
   .on(updateTodo, (list, todo: ITodoItem) => {
-    return list.map((item: any) => (item.id === todo.id ? { ...todo, note: todo.note } : item));
+    return list.map((item: any) =>
+      item.id === todo.id ? { ...todo, note: todo.note, categories: todo.categories } : item,
+    );
   })
   .on(deleteTodo, (list, todo) => {
     return list.filter((item) => {

@@ -1,13 +1,15 @@
 import clsx from "clsx";
 
 import CheckIcon from "@mui/icons-material/Check";
+import NoteIcon from "components/uikit/icons/NoteIcon";
 
 import { List, Span } from "./styles";
-import NoteIcon from "components/uikit/icons/NoteIcon";
+
+import TodoCategoryItem from "./TodoCategoryItem";
 
 // TODO нормально типизиовать пропсы.
 function TodoItem(props: any) {
-  const { id, title, textNote, category, done, toggle, onToggleTodoDetails, isOpen } = props;
+  const { id, title, textNote, categories, done, toggle, onToggleTodoDetails, isOpen } = props;
 
   return (
     <List
@@ -39,17 +41,7 @@ function TodoItem(props: any) {
           </div>
         )}
 
-        {category && (
-          <div>
-            <span
-              className={clsx("max-w-150 text-2xs ", {
-                "text-yellow": true,
-              })}
-            >
-              {category}
-            </span>
-          </div>
-        )}
+        {categories?.length > 0 && <TodoCategoryItem options={categories} />}
       </div>
     </List>
   );
