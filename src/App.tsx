@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <TextGreeting todos={[]} />,
+        element: <TextGreeting />,
       },
       { path: "tasks", element: <TodoPage /> },
       { path: "reminder", element: <ReminderPage /> },

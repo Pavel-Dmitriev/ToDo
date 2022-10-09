@@ -1,10 +1,15 @@
-import { ITodoItem } from "components/layouts/TodoList/interface";
+import { useStore } from "effector-react";
 
-function TextGreeting({ todos }: { todos: ITodoItem[] }) {
+import { $todoList } from "components/layouts/TodoList/store";
+
+function TextGreeting() {
+  // TODO вынести todos в пропсы.
+  const todos = useStore($todoList);
+
   return (
     <section className="flex grow flex-col items-center justify-center text-blue">
       <h1 className="text-2xl">Приложение список дел</h1>
-      {!!todos?.length && <p>У вас "столько то дел"</p>}
+      {!!todos?.length && <p>Кол-во ваших активных дел: {todos?.length}</p>}
     </section>
   );
 }
