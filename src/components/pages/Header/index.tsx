@@ -1,17 +1,17 @@
-import React from "react";
+import { Link, NavLink } from "react-router-dom";
 
 function Header() {
   return (
     <header className="flex h-48 items-center bg-edge-blue pl-20 text-sm font-bold text-white">
-      <a href="/" className="mr-32">
+      <Link to={`/`} className="mr-32">
         To Do
-      </a>
+      </Link>
       <ul className="flex">
         <li className="mr-12">
-          <a href="tasks">Дела</a>
+          <NavLink to={`tasks`}>Дела</NavLink>
         </li>
         <li>
-          <a href="reminder">Напоминание</a>
+          <NavLink to={`reminder`}>Напоминание</NavLink>
         </li>
       </ul>
     </header>

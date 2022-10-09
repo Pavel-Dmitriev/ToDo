@@ -6,13 +6,13 @@ import TextInputWrapper from "components/layouts/TextInputWrapper";
 import TodoList from "components/layouts/TodoList";
 
 // import { DivWithBackground } from "components/layouts/TodoList/styles";
-import { deleteTodo, openTodoDetails } from "../TodoList/store";
+import { deleteTodo, openTodoDetails } from "../../layouts/TodoList/store";
 import { setLocalStorageTodos } from "api/localStorage";
 import useToggle from "hooks/useToggle";
 
-import { ITodoItem } from "../TodoList/interface";
+import { ITodoItem } from "../../layouts/TodoList/interface";
 
-function Wrapper() {
+function TodoPage() {
   const [activeId, setActiveId] = useState<string>("");
   const [isOpen, setIsOpen] = useToggle(false);
 
@@ -36,7 +36,7 @@ function Wrapper() {
   // };
 
   return (
-    <main className="will-change-width flex flex-1 overflow-hidden ">
+    <>
       <div className="flex flex-1 flex-col overflow-hidden bg-gray pt-12 pr-16 pl-16">
         {/* <SortingTodo /> */}
         <TextInputWrapper />
@@ -53,8 +53,8 @@ function Wrapper() {
           onDeleteTodo={handleDeleteTodo}
         />
       )}
-    </main>
+    </>
   );
 }
 
-export default Wrapper;
+export default TodoPage;

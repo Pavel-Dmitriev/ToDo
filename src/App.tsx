@@ -1,15 +1,33 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "effector-logger/inspector";
 
-import Header from "./components/layouts/Header";
-import Wrapper from "components/layouts/Wrapper";
+import ErrorPage from "components/uikit/ErrorPage";
+
+import Root from "./components/pages/Root";
+import TodoPage from "components/pages/TodoPage";
+import ReminderPage from "components/pages/ReminderPage";
+import NoMatch from "components/pages/NoMatch";
+import TextGreeting from "components/pages/TextGreeting";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <TextGreeting todos={[]} />,
+      },
+      { path: "tasks", element: <TodoPage /> },
+      { path: "reminder", element: <ReminderPage /> },
+      { path: "*", element: <NoMatch /> },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <div className="flex h-[100vh] flex-col">
-      <Header />
-      <Wrapper />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
