@@ -1,5 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 
+import { setColorLink } from "helpers/setColorNavLink";
+
 function Header() {
   return (
     <header className="flex h-48 items-center bg-edge-blue pl-20 text-sm font-bold text-white">
@@ -8,10 +10,14 @@ function Header() {
       </Link>
       <ul className="flex">
         <li className="mr-12">
-          <NavLink to={`tasks`}>Дела</NavLink>
+          <NavLink to={`tasks`} className={setColorLink}>
+            Дела
+          </NavLink>
         </li>
         <li>
-          <NavLink to={`reminder`}>Напоминание</NavLink>
+          <NavLink to={`reminder`} className={setColorLink}>
+            Напоминание
+          </NavLink>
         </li>
       </ul>
     </header>
