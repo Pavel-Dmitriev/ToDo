@@ -10,6 +10,7 @@ module.exports = {
       primary: "#323130",
       disable: "#a19f9d",
       white: "#ffffff",
+      black: "000000",
       "edge-blue": "#0078d7",
       blue: {
         DEFAULT: "#2564cf",
@@ -23,6 +24,10 @@ module.exports = {
         100: "#f6f6f5",
         200: "#edebe9",
         300: "#797775",
+        400: "#A7A8AB",
+        500: "#76767A",
+        600: "#F9FBFC",
+        900: "#333333",
       },
       red: {
         DEFAULT: "#e52e2e",

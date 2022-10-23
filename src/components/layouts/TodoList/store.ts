@@ -30,7 +30,7 @@ export const $todoList = createStore<ITodoItem[]>([])
     list.map((item) => (item === todo ? toggleTodoItem(todo) : item)),
   )
   .on(addTodo, (list, data: ITodoItem): ITodoItem[] => {
-    const { title, note = "", categories = null } = data;
+    const { title, note = "", categories, reminder } = data;
     const todos = [
       ...list,
       {
@@ -38,6 +38,7 @@ export const $todoList = createStore<ITodoItem[]>([])
         title,
         note,
         categories,
+        reminder,
         done: false,
         isOpen: false,
         createdAt: new Date(),
@@ -48,7 +49,9 @@ export const $todoList = createStore<ITodoItem[]>([])
   })
   .on(updateTodo, (list, todo: ITodoItem) => {
     return list.map((item: any) =>
-      item.id === todo.id ? { ...todo, note: todo.note, categories: todo.categories } : item,
+      item.id === todo.id
+        ? { ...todo, note: todo.note, categories: todo.categories, reminder: todo.reminder }
+        : item,
     );
   })
   .on(deleteTodo, (list, todo) => {

@@ -1,10 +1,15 @@
+import { useEffect } from "react";
 import { useStore } from "effector-react";
 
-import { $todoList } from "components/layouts/TodoList/store";
+import { $todoList, getTodos } from "components/layouts/TodoList/store";
 
 function TextGreeting() {
   // TODO вынести todos в пропсы.
   const todos = useStore($todoList);
+
+  useEffect(() => {
+    getTodos();
+  }, []);
 
   return (
     <section className="flex grow flex-col items-center justify-center text-blue">

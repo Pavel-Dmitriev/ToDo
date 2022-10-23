@@ -6,6 +6,7 @@ export interface ITodoItem {
   title: string;
   note: string;
   categories?: Сategories;
+  reminder?: IReminder;
   done: boolean;
   toggle?: () => {};
   isOpen: boolean;
@@ -16,4 +17,10 @@ export interface ITodoItem {
 export interface ITodoList {
   setActiveId: Dispatch<SetStateAction<string>>;
   setIsOpen: () => void;
+}
+
+export interface IReminder {
+  name: string;
+  date: Date | string;
+  time: Date | string;
 }

@@ -14,6 +14,7 @@ import { ITodoItem } from "../../layouts/TodoList/interface";
 
 function TodoPage() {
   const [activeId, setActiveId] = useState<string>("");
+  // TODO подцепить состояние из стора
   const [isOpen, setIsOpen] = useToggle(false);
 
   const onCloseTodoDetails = (item: ITodoItem) => {

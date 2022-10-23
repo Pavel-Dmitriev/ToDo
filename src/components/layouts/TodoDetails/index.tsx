@@ -24,7 +24,8 @@ function TodoDetails(props: ITodoDetails) {
     defaultValues: {
       id: id,
       note: "",
-      categories: todoItem?.categories || null,
+      categories: todoItem?.categories,
+      reminder: todoItem?.reminder,
     },
   });
 
@@ -42,7 +43,7 @@ function TodoDetails(props: ITodoDetails) {
             {todoItem?.title}
           </div>
           <TodoCategory todoItem={todoItem} />
-          <TodoReminder />
+          <TodoReminder todoItem={todoItem} />
           <TodoNote textNote={todoItem?.note} todoItem={todoItem} />
         </form>
         <div className="mx-10 flex items-center justify-between border-t-1 border-gray-200 py-16">

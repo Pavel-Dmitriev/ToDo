@@ -18,6 +18,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
     "baseUrl": "src"
+    // "noImplicitAny": false
   },
   "files": ["twin.d.ts"],
   "include": ["src"]
