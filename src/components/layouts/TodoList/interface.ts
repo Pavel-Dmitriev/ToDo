@@ -1,14 +1,15 @@
 import { Dispatch, SetStateAction } from "react";
+import { IOption } from "components/uikit/Select/interface";
 import { Сategories } from "types/types";
 
 export interface ITodoItem {
   id: string;
   title: string;
   note: string;
-  categories?: Сategories;
+  categories?: IOption[];
   reminder?: IReminder;
   done: boolean;
-  toggle?: () => {};
+  toggle?: () => void;
   isOpen: boolean;
   toggleTodoDetails?: () => {};
   createdAt: Date | string;

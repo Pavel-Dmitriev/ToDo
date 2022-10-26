@@ -4,11 +4,11 @@ import { COLOR_OPTIONS } from "components/TodoCategory/constants";
 
 import { IOption } from "components/uikit/Select/interface";
 
-function TodoCategoryItem({ options }: { options: IOption[] }) {
+function TodoCategoryItem({ options }: { options?: IOption[] }) {
   return (
-    <div className="flex">
+    <div className="grid grid-flow-col gap-x-8 pb-4">
       {options?.map((item) => (
-        <div key={`item_${item.value}`} className="mr-8">
+        <div key={`item_${item.value}`}>
           <span
             className={clsx(
               `mr-4 inline-block h-8 w-8 rounded-full border-1 border-solid ${

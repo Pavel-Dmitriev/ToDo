@@ -9,7 +9,7 @@ import Textarea from "components/uikit/Textarea";
 
 import { updateTodo } from "components/layouts/TodoList/store";
 
-function TodoNote({ textNote, todoItem }: any) {
+function TodoNote({ note, todoItem }: any) {
   const [activeNote, setActiveNote] = useState<boolean>(false);
 
   const { register, setValue, reset, handleSubmit } = useFormContext();
@@ -36,7 +36,7 @@ function TodoNote({ textNote, todoItem }: any) {
           disabled={!activeNote}
         />
 
-        {textNote && (
+        {note && (
           <p
             className={clsx(
               "bottom-20px rounded-dafault absolute top-0 top-0 right-0 left-0 min-h-[96px] bg-white p-8 text-xs",
@@ -46,7 +46,7 @@ function TodoNote({ textNote, todoItem }: any) {
               },
             )}
           >
-            {textNote}
+            {note}
           </p>
         )}
       </div>
@@ -56,7 +56,7 @@ function TodoNote({ textNote, todoItem }: any) {
           onClick={() => {
             if (!activeNote) {
               setActiveNote(true);
-              textNote && setValue("note", textNote);
+              note && setValue("note", note);
             }
           }}
           fontSize="small"

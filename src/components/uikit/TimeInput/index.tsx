@@ -8,7 +8,11 @@ import { IProps } from "./interface";
 function TimeInput(props: IProps) {
   const { mask, label, description, error, rules, name } = props;
 
-  const { control, getValues } = useFormContext();
+  const {
+    control,
+    getValues,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <Controller
@@ -20,9 +24,6 @@ function TimeInput(props: IProps) {
           onChange(value);
         };
 
-        const {
-          formState: { errors },
-        } = useFormContext();
         const errorText = errors?.[name]?.message;
 
         if (label || description || errorText || error || rules) {

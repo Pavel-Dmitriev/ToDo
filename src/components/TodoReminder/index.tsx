@@ -14,7 +14,14 @@ function TodoReminder({ todoItem }: { todoItem?: ITodoItem }) {
   const onSubmit = (data: any, e: any) => {
     e.preventDefault();
     console.log(`onSubmit: data = ${JSON.stringify(data)}`);
-    updateTodo({ ...todoItem, reminder: data.reminder });
+    updateTodo({
+      ...todoItem,
+      reminder: {
+        name: data.reminder.name,
+        date: data.reminder.date || new Date(),
+        time: data.reminder.time || "00:00",
+      },
+    });
     reset();
   };
 

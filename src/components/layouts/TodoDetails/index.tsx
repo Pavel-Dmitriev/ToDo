@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import clsx from "clsx";
 import dayjs from "dayjs";
@@ -23,13 +24,20 @@ function TodoDetails(props: ITodoDetails) {
   const methods = useForm({
     defaultValues: {
       id: id,
-      note: "",
-      categories: todoItem?.categories,
-      reminder: todoItem?.reminder,
+      note: todoItem?.note || "",
+      categories: todoItem?.categories || null,
+      reminder: {
+        name: todoItem?.reminder?.name || "",
+        date: todoItem?.reminder?.date || null,
+        time: todoItem?.reminder?.time || "",
+      },
     },
   });
 
-  const createdAt = dayjs(todoItem?.createdAt).format("DD.MM.YYYY");
+  const createdAt = useMemo(
+    () => dayjs(todoItem?.createdAt).format("DD.MM.YYYY"),
+    [todoItem?.createdAt],
+  );
 
   return (
     <FormProvider {...methods}>
@@ -44,7 +52,7 @@ function TodoDetails(props: ITodoDetails) {
           </div>
           <TodoCategory todoItem={todoItem} />
           <TodoReminder todoItem={todoItem} />
-          <TodoNote textNote={todoItem?.note} todoItem={todoItem} />
+          <TodoNote note={todoItem?.note} todoItem={todoItem} />
         </form>
         <div className="mx-10 flex items-center justify-between border-t-1 border-gray-200 py-16">
           <button onClick={() => onClose(todoItem!)}>

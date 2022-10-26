@@ -1,15 +1,18 @@
 import clsx from "clsx";
-
+import isEmpty from "lodash/isEmpty";
 import CheckIcon from "@mui/icons-material/Check";
 import NoteIcon from "components/uikit/icons/NoteIcon";
 
 import { List, Span } from "./styles";
 
 import TodoCategoryItem from "./TodoCategoryItem";
+import TodoReminderItem from "./TodoReminderItem";
 
-// TODO нормально типизиовать пропсы.
-function TodoItem(props: any) {
-  const { id, title, textNote, categories, done, toggle, onToggleTodoDetails, isOpen } = props;
+import { ITodoItemProps } from "./interface";
+
+function TodoItem(props: ITodoItemProps) {
+  const { id, title, note, categories, reminder, done, toggle, onToggleTodoDetails, isOpen } =
+    props;
 
   return (
     <List
@@ -34,14 +37,16 @@ function TodoItem(props: any) {
         >
           <span>{title}</span>
         </button>
-        {textNote && (
-          <div className="flex items-center">
-            <NoteIcon className="mr-4" />
-            <span className="text-[10px] leading-[14px] text-primary">{textNote}</span>
-          </div>
-        )}
-
-        {categories?.length > 0 && <TodoCategoryItem options={categories} />}
+        <div className="grid grid-flow-col items-center gap-x-12">
+          {note && (
+            <div className="flex">
+              <NoteIcon className="mr-4" />
+              <span className="text-[10px] leading-[14px] text-primary">{note}</span>
+            </div>
+          )}
+          {!isEmpty(reminder) && <TodoReminderItem reminder={reminder} />}
+          {!isEmpty(categories) && <TodoCategoryItem options={categories} />}
+        </div>
       </div>
     </List>
   );

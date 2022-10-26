@@ -21,8 +21,8 @@ function TodoList({ setIsOpen, setActiveId }: ITodoList) {
 
   return (
     <ul>
-      {items?.map((item: any) => {
-        const { id, title, note, categories, done, isOpen } = item;
+      {items?.map((item) => {
+        const { id } = item;
 
         const toggleTodoItem = () => {
           toggleTodo(item);
@@ -38,16 +38,11 @@ function TodoList({ setIsOpen, setActiveId }: ITodoList) {
 
         return (
           <TodoItem
-            done={done}
-            title={title}
-            categories={categories}
+            {...item}
             key={`todo_item_${id}`}
-            id={id}
             toggle={toggleTodoItem}
             onToggleTodoDetails={onToggleTodoDetails}
-            isOpen={isOpen}
             setOpen={setIsOpen}
-            textNote={note}
             // deleteTodo={handleDeleteTodo}
           />
         );

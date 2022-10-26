@@ -24,7 +24,11 @@ function DatePicker(props: IProps) {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const { control, getValues } = useFormContext();
+  const {
+    control,
+    getValues,
+    formState: { errors },
+  } = useFormContext();
 
   useEffect(() => {
     return () => {
@@ -38,6 +42,7 @@ function DatePicker(props: IProps) {
       name={name}
       defaultValue={getValues(name)}
       render={({ field: { value, onBlur, onChange, ref } }) => {
+        let convertedValue = typeof value === "string" ? new Date(value) : value;
         const additionalProps: any = {};
 
         if (addRefToField) {
@@ -51,9 +56,6 @@ function DatePicker(props: IProps) {
           }
         };
 
-        const {
-          formState: { errors },
-        } = useFormContext();
         const errorText = errors?.[name]?.message;
 
         if (label || description || errorText || error || rules) {
@@ -63,14 +65,14 @@ function DatePicker(props: IProps) {
                 {...additionalProps}
                 {...props}
                 id={name}
-                defaultValue={value}
+                defaultValue={convertedValue}
                 onBlur={onBlur}
                 format={format}
                 dayPlaceholder="дд"
                 monthPlaceholder="мм"
                 yearPlaceholder="гггг"
                 calendarIcon={<CalendarToday fontSize="small" />}
-                value={value as any}
+                value={convertedValue}
                 isOpen={isOpen}
                 clearIcon={clearIcon ? clearIcon : null}
                 className={`${className ? className : ""} ${value ? "text-gray-900" : ""}`}
@@ -88,14 +90,14 @@ function DatePicker(props: IProps) {
             {...additionalProps}
             {...props}
             id={name}
-            defaultValue={value}
+            defaultValue={convertedValue}
             onBlur={onBlur}
             format={format}
             dayPlaceholder="дд"
             monthPlaceholder="мм"
             yearPlaceholder="гггг"
             calendarIcon={<CalendarToday fontSize="small" />}
-            value={value as any}
+            value={convertedValue}
             isOpen={isOpen}
             clearIcon={clearIcon ? clearIcon : null}
             className={`${className ? className : ""} ${value ? "text-gray-900" : ""}`}
