@@ -1,16 +1,17 @@
 import { useState } from "react";
 
-import TodoDetails from "components/layouts/TodoDetails";
-import TextInputWrapper from "components/layouts/TextInputWrapper";
 // import SortingTodo from "components/layouts/SortingTodo";
-import TodoList from "components/layouts/TodoList";
 
-// import { DivWithBackground } from "components/layouts/TodoList/styles";
-import { deleteTodo, openTodoDetails } from "../../layouts/TodoList/store";
+import FormTextInput from "./components/FormTextInput";
+import TodoList from "./components/TodoList";
+import TodoDetails from "./components/TodoDetails";
+
+import { deleteTodo, openTodoDetails } from "./components/TodoList/store";
+
 import { setLocalStorageTodos } from "api/localStorage";
 import useToggle from "hooks/useToggle";
 
-import { ITodoItem } from "../../layouts/TodoList/interface";
+import { ITodoItem } from "./components/TodoList/interface";
 
 function TodoPage() {
   const [activeId, setActiveId] = useState<string>("");
@@ -40,7 +41,9 @@ function TodoPage() {
     <>
       <div className="flex flex-1 flex-col overflow-hidden bg-gray pt-12 pr-16 pl-16">
         {/* <SortingTodo /> */}
-        <TextInputWrapper />
+        <div className="mb-12 rounded-4 bg-white p-12">
+          <FormTextInput />
+        </div>
         <div>
           <TodoList setIsOpen={setIsOpen} setActiveId={setActiveId} />
           {/* <DivWithBackground /> */}

@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-import { COLOR_OPTIONS } from "components/TodoCategory/constants";
+import { COLOR_OPTIONS } from "pages/TodoPage/components/TodoDetails/components/TodoCategory/constants";
 
 import { IOption } from "components/uikit/Select/interface";
 

@@ -1,7 +1,9 @@
 import { useEffect } from "react";
 import { useStore } from "effector-react";
 
-import TodoItem from "components/layouts/TodoItem";
+import "react-toastify/dist/ReactToastify.css";
+
+import TodoItem from "./components/TodoItem";
 
 import NoData from "components/uikit/NoData";
 

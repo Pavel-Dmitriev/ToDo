@@ -6,9 +6,9 @@ import dayjs from "dayjs";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CloseCard from "components/uikit/icons/CloseCard";
 
-import TodoReminder from "components/TodoReminder";
-import TodoCategory from "components/TodoCategory";
-import TodoNote from "components/TodoNote";
+import TodoReminder from "./components/TodoReminder";
+import TodoCategory from "./components/TodoCategory";
+import TodoNote from "./components/TodoNote";
 
 import { Aside } from "./styles";
 

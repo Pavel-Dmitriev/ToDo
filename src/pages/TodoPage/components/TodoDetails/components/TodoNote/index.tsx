@@ -7,7 +7,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import Button from "components/uikit/Button";
 import Textarea from "components/uikit/Textarea";
 
-import { updateTodo } from "components/layouts/TodoList/store";
+import { updateTodo } from "pages/TodoPage/components/TodoList/store";
 
 function TodoNote({ note, todoItem }: any) {
   const [activeNote, setActiveNote] = useState<boolean>(false);

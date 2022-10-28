@@ -1,12 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "effector-logger/inspector";
 
-import ErrorPage from "components/uikit/ErrorPage";
-
-import Root from "./components/pages/Root";
-import TodoPage from "components/pages/TodoPage";
-import NoMatch from "components/pages/NoMatch";
-import TextGreeting from "components/pages/TextGreeting";
+import Root from "./pages/Root";
+import TodoPage from "pages/TodoPage";
+import NoMatch from "pages/NoMatch";
+import ErrorPage from "./pages/ErrorPage";
+import TextGreeting from "pages/TextGreeting";
 
 const router = createBrowserRouter([
   {

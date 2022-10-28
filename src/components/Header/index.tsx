@@ -14,11 +14,6 @@ function Header() {
             Дела
           </NavLink>
         </li>
-        <li>
-          <NavLink to={`reminder`} className={setColorLink}>
-            Напоминание
-          </NavLink>
-        </li>
       </ul>
     </header>
   );

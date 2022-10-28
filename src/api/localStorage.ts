@@ -1,4 +1,4 @@
-import { ITodoItem } from "components/layouts/TodoList/interface";
+import { ITodoItem } from "pages/TodoPage/components/TodoList/interface";
 
 export const localStorageKey = "Список дел";
 

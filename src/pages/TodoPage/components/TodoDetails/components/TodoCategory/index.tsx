@@ -5,9 +5,9 @@ import Button from "components/uikit/Button";
 
 import { OPTIONS } from "./constants";
 
-import { updateTodo } from "components/layouts/TodoList/store";
+import { updateTodo } from "pages/TodoPage/components/TodoList/store";
 
-import { ITodoItem } from "components/layouts/TodoList/interface";
+import { ITodoItem } from "pages/TodoPage/components/TodoList/interface";
 
 function TodoCategory({ todoItem }: { todoItem: ITodoItem | undefined }) {
   const { reset, handleSubmit } = useFormContext();

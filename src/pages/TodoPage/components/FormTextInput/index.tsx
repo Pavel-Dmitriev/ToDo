@@ -3,7 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import Button from "components/uikit/Button";
 import TextInput from "components/uikit/TextInput";
 
-import { addTodo } from "components/layouts/TodoList/store";
+import { addTodo } from "pages/TodoPage/components/TodoList/store";
 
 type Input = {
   title: string;

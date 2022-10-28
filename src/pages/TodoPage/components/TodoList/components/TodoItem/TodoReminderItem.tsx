@@ -3,8 +3,7 @@ import dayjs from "dayjs";
 
 import NotificationIcon from "components/uikit/icons/NotificationIcon";
 
-import { IReminder } from "../TodoList/interface";
-import isEmpty from "lodash/isEmpty";
+import { IReminder } from "../../interface";
 
 function TodoReminderItem({ reminder }: { reminder: IReminder }) {
   const { name, date, time } = reminder;

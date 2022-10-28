@@ -1,8 +1,8 @@
 import { useStore } from "effector-react";
 
-import { $todoList } from "components/layouts/TodoList/store";
+import { $todoList } from "pages/TodoPage/components/TodoList/store";
 
-import { ITodoItem } from "components/layouts/TodoList/interface";
+import { ITodoItem } from "pages/TodoPage/components/TodoList/interface";
 
 function useDetailsDataById(id: string, isOpen: boolean) {
   const store = useStore($todoList);

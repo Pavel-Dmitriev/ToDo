@@ -4,9 +4,9 @@ import TextInput from "components/uikit/TextInput";
 import Button from "components/uikit/Button";
 import DateAndTimeInput from "components/uikit/DateAndTimeInput";
 
-import { updateTodo } from "components/layouts/TodoList/store";
+import { updateTodo } from "pages/TodoPage/components/TodoList/store";
 
-import { ITodoItem } from "components/layouts/TodoList/interface";
+import { ITodoItem } from "pages/TodoPage/components/TodoList/interface";
 
 function TodoReminder({ todoItem }: { todoItem?: ITodoItem }) {
   const { register, reset, handleSubmit } = useFormContext();

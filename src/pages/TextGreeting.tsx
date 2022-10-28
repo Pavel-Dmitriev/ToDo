@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useStore } from "effector-react";
 
-import { $todoList, getTodos } from "components/layouts/TodoList/store";
+import { $todoList, getTodos } from "pages/TodoPage/components/TodoList/store";
 
 function TextGreeting() {
   // TODO вынести todos в пропсы.
