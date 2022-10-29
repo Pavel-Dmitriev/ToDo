@@ -17,7 +17,8 @@ export interface ITodoItem {
 
 export interface ITodoList {
   setActiveId: Dispatch<SetStateAction<string>>;
-  setIsOpen: () => void;
+  // setIsOpen: () => void;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface IReminder {

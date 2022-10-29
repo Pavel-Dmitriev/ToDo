@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // import SortingTodo from "components/layouts/SortingTodo";
 
@@ -6,26 +6,24 @@ import FormTextInput from "./components/FormTextInput";
 import TodoList from "./components/TodoList";
 import TodoDetails from "./components/TodoDetails";
 
-import { deleteTodo, openTodoDetails } from "./components/TodoList/store";
+import { deleteTodo, getTodos, openTodoDetails } from "./components/TodoList/store";
 
 import { setLocalStorageTodos } from "api/localStorage";
-import useToggle from "hooks/useToggle";
 
 import { ITodoItem } from "./components/TodoList/interface";
 
 function TodoPage() {
   const [activeId, setActiveId] = useState<string>("");
-  // TODO подцепить состояние из стора
-  const [isOpen, setIsOpen] = useToggle(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const onCloseTodoDetails = (item: ITodoItem) => {
-    setIsOpen();
+    setIsOpen(false);
     openTodoDetails(item);
   };
 
   const handleDeleteTodo = () => {
     deleteTodo(activeId);
-    setIsOpen();
+    setIsOpen(false);
     // TODO придумать получше, что бы не сетать пустой массив в ЛС.
     setLocalStorageTodos([]);
   };
@@ -36,6 +34,10 @@ function TodoPage() {
   //   setOpen();
   //   console.log("close todo details");
   // };
+
+  useEffect(() => {
+    getTodos();
+  }, []);
 
   return (
     <>

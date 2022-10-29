@@ -7,7 +7,7 @@ import TodoItem from "./components/TodoItem";
 
 import NoData from "components/uikit/NoData";
 
-import { $todoList, getTodos, openTodoDetails, toggleTodo } from "./store";
+import { $todoList, openTodoDetails, toggleTodo } from "./store";
 import { setLocalStorageTodos } from "api/localStorage";
 
 import { ITodoList } from "./interface";
@@ -15,16 +15,12 @@ import { ITodoList } from "./interface";
 function TodoList({ setIsOpen, setActiveId }: ITodoList) {
   const items = useStore($todoList);
 
-  useEffect(() => {
-    getTodos();
-  }, []);
-
   if (!items?.length) return <NoData />;
 
   return (
     <ul>
       {items?.map((item) => {
-        const { id } = item;
+        const { id, isOpen } = item;
 
         const toggleTodoItem = () => {
           toggleTodo(item);
@@ -33,7 +29,7 @@ function TodoList({ setIsOpen, setActiveId }: ITodoList) {
         const onToggleTodoDetails = () => {
           setActiveId(id);
           openTodoDetails(item);
-          setIsOpen();
+          setIsOpen(!isOpen);
         };
 
         setLocalStorageTodos(items);

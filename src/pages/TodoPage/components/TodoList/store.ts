@@ -45,6 +45,7 @@ export const $todoList = createStore<ITodoItem[]>([])
       },
     ];
     setLocalStorageTodos(todos);
+
     return todos;
   })
   .on(updateTodo, (list, todo: ITodoItem) => {
@@ -72,5 +73,7 @@ export const $todoList = createStore<ITodoItem[]>([])
   .on(getTodo, (list, todo) => list.map((item) => (item === todo ? getTodoItem(todo) : item)))
   .on(getTodos, (): ITodoItem[] | void => {
     const localStorageTodos = getLocalStorageTodos();
-    return localStorageTodos?.length ? localStorageTodos : [];
+    return localStorageTodos?.length
+      ? localStorageTodos.map((item) => ({ ...item, isOpen: false }))
+      : [];
   });
