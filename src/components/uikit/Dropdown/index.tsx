@@ -1,12 +1,6 @@
-import React, { useState, useEffect, ReactNode } from "react";
+import { useState, useEffect } from "react";
 
-interface IDropdownOpen {
-  button: ReactNode;
-  children: ReactNode;
-  isOpen?: boolean;
-  onOpen?: () => void;
-  onClose?: () => void;
-}
+import { IDropdownOpen } from "./interface";
 
 const NOOP = () => {};
 
