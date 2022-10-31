@@ -6,8 +6,6 @@ import TodoDetails from "./components/TodoDetails";
 
 import { deleteTodo, getTodos, openTodoDetails } from "./components/TodoList/store";
 
-import { setLocalStorageTodos } from "api/localStorage";
-
 import { ITodoItem } from "./components/TodoList/interface";
 
 function TodoPage() {
@@ -22,8 +20,6 @@ function TodoPage() {
   const handleDeleteTodo = () => {
     deleteTodo(activeId);
     setIsOpen(false);
-    // TODO придумать получше, что бы не сетать пустой массив в ЛС.
-    setLocalStorageTodos([]);
   };
 
   // const onCloseTodoDetails = (item: any) => {

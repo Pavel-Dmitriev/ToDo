@@ -22,10 +22,6 @@ const toggleTodoDetails = (todo: ITodoItem): ITodoItem => ({
   isOpen: !todo.isOpen,
 });
 
-const getTodoItem = (todo: ITodoItem) => ({
-  ...todo,
-});
-
 export const $todoList = createStore<ITodoItem[]>([])
   .on(toggleTodo, (list, todo: ITodoItem): ITodoItem[] => {
     const todos = list.map((item) => (item === todo ? toggleTodoItem(todo) : item));
@@ -67,38 +63,33 @@ export const $todoList = createStore<ITodoItem[]>([])
         : item,
     );
     setLocalStorageTodos(todos);
+
     return todos;
   })
-  .on(deleteTodo, (list, todo) => {
-    return list.filter((item) => {
+  .on(deleteTodo, (list, todo: string) => {
+    let todos = list.filter((item) => {
       return item.id !== todo;
     });
+    setLocalStorageTodos(todos);
+
+    return todos;
   })
-  .on(openTodoDetails, (list, todo: ITodoItem): ITodoItem[] =>
-    list.map((item) =>
+  .on(openTodoDetails, (list, todo: ITodoItem): ITodoItem[] => {
+    let todos = list.map((item) =>
       item === todo
         ? toggleTodoDetails(todo)
         : {
             ...item,
             isOpen: false,
           },
-    ),
-  )
-  .on(getTodo, (list, todo) => list.map((item) => (item === todo ? getTodoItem(todo) : item)))
+    );
+    setLocalStorageTodos(todos);
+
+    return todos;
+  })
   .on(getTodos, (): ITodoItem[] | void => {
     const localStorageTodos = getLocalStorageTodos();
     return localStorageTodos?.length
       ? localStorageTodos.map((item) => ({ ...item, isOpen: false }))
       : [];
   });
-
-// export const $activeFilter = createStore<string>("Все").on(filteredTodo, (_, filter) => filter);
-
-// export const $filteredTodos = combine($todoList, $activeFilter, (todoList, filter) =>
-//   filter === "Все"
-//     ? todoList
-//     : todoList.filter((todo) => {
-//         if (filter === "Выполненные") return todo.done;
-//         return !todo.done;
-//       }),
-// );
