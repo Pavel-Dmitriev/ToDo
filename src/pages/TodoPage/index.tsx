@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-// import SortingTodo from "components/layouts/SortingTodo";
-
 import FormTextInput from "./components/FormTextInput";
 import TodoList from "./components/TodoList";
 import TodoDetails from "./components/TodoDetails";
@@ -42,7 +40,6 @@ function TodoPage() {
   return (
     <>
       <div className="flex flex-1 flex-col overflow-hidden bg-gray pt-12 pr-16 pl-16">
-        {/* <SortingTodo /> */}
         <div className="mb-12 rounded-4 bg-white p-12">
           <FormTextInput />
         </div>

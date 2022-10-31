@@ -21,7 +21,9 @@ function Dropdown({ button, children, isOpen, onClose = NOOP, onOpen = NOOP }: I
       <div onClick={handleOpen}>{button}</div>
       {isDropdownOpen && (
         <div>
-          <div onClick={() => setIsDropdownOpen(false)}>{children}</div>
+          <div onClick={() => setIsDropdownOpen(false)} className="relative">
+            {children}
+          </div>
         </div>
       )}
     </div>
