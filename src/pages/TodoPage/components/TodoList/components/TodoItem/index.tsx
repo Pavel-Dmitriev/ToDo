@@ -1,12 +1,12 @@
 import clsx from "clsx";
 import isEmpty from "lodash/isEmpty";
 import CheckIcon from "@mui/icons-material/Check";
-import NoteIcon from "components/uikit/icons/NoteIcon";
 
 import { List, Span } from "./styles";
 
 import TodoCategoryItem from "./TodoCategoryItem";
 import TodoReminderItem from "./TodoReminderItem";
+import TodoNoteItem from "./TodoNoteItem";
 
 import { ITodoItemProps } from "./interface";
 
@@ -38,13 +38,8 @@ function TodoItem(props: ITodoItemProps) {
           <span>{title}</span>
         </button>
         <div className="grid grid-flow-col items-center gap-x-12">
-          {note && (
-            <div className="flex">
-              <NoteIcon className="mr-4" />
-              <span className="text-[10px] leading-[14px] text-primary">{note}</span>
-            </div>
-          )}
-          {!isEmpty(reminder) && <TodoReminderItem reminder={reminder} />}
+          {note && <TodoNoteItem note={note} />}
+          {reminder?.date && <TodoReminderItem reminder={reminder} />}
           {!isEmpty(categories) && <TodoCategoryItem options={categories} />}
         </div>
       </div>

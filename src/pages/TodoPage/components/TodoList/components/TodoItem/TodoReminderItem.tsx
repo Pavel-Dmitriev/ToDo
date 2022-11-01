@@ -3,9 +3,9 @@ import dayjs from "dayjs";
 
 import NotificationIcon from "components/uikit/icons/NotificationIcon";
 
-import { IReminder } from "../../interface";
+// import { IReminder } from "../../interface";
 
-function TodoReminderItem({ reminder }: { reminder: IReminder }) {
+function TodoReminderItem({ reminder }: any) {
   const { name, date, time } = reminder;
 
   const formatDateTime = useMemo(() => {

@@ -1,10 +1,12 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import clsx from "clsx";
 import dayjs from "dayjs";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import CloseCard from "components/uikit/icons/CloseCard";
+
+import Button from "components/uikit/Button";
 
 import TodoReminder from "./components/TodoReminder";
 import TodoCategory from "./components/TodoCategory";
@@ -14,10 +16,14 @@ import { Aside } from "./styles";
 
 import useDetailsDataById from "./hooks/useDetailsDataById";
 
+import { updateTodo } from "pages/TodoPage/components/TodoList/store";
+
 import { ITodoDetails } from "./interface";
 
 function TodoDetails(props: ITodoDetails) {
   const { isOpen, id, onClose, onDeleteTodo } = props;
+
+  const [activeNote, setActiveNote] = useState<boolean>(false);
 
   const todoItem = useDetailsDataById(id, isOpen);
 
@@ -33,6 +39,19 @@ function TodoDetails(props: ITodoDetails) {
       },
     },
   });
+  const { handleSubmit } = methods;
+
+  const onSubmit = (data: any, e: any) => {
+    console.log("🚀 ~ file: index.tsx ~ line 42 ~ onSubmit ~ data", data);
+    e.preventDefault();
+    updateTodo({
+      ...todoItem,
+      categories: data.categories,
+      reminder: data.reminder,
+      note: data.note,
+    });
+    setActiveNote(false);
+  };
 
   const createdAt = useMemo(
     () => dayjs(todoItem?.createdAt).format("DD.MM.YYYY"),
@@ -43,16 +62,27 @@ function TodoDetails(props: ITodoDetails) {
     <FormProvider {...methods}>
       <Aside
         className={clsx(
-          "flex w-[360px] max-w-[360px] flex-1 flex-col bg-gray transition-[width] duration-300 ease-out",
+          "flex w-[360px] max-w-[360px] flex-1 flex-col justify-between  bg-gray transition-[width] duration-300 ease-out",
         )}
       >
-        <form className="mt-10 flex-1 overflow-y-auto overflow-x-hidden px-10 pb-16">
+        <form
+          className="mt-10 flex flex-1 flex-col overflow-y-auto overflow-x-hidden px-10 pb-16"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <div className="mb-8 flex items-center rounded-default bg-white p-16 font-semibold leading-5">
             {todoItem?.title}
           </div>
           <TodoCategory todoItem={todoItem} />
           <TodoReminder todoItem={todoItem} />
-          <TodoNote note={todoItem?.note} todoItem={todoItem} />
+          <TodoNote
+            note={todoItem?.note}
+            todoItem={todoItem}
+            activeNote={activeNote}
+            setActiveNote={setActiveNote}
+          />
+          <div className="flex flex-1 justify-center">
+            <Button name="Отправить" className="items-center self-end" />
+          </div>
         </form>
         <div className="mx-10 flex items-center justify-between border-t-1 border-gray-200 py-16">
           <button onClick={() => onClose(todoItem!)}>

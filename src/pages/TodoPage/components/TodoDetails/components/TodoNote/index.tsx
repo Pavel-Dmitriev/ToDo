@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import clsx from "clsx";
 
@@ -7,20 +6,8 @@ import EditIcon from "@mui/icons-material/Edit";
 import Button from "components/uikit/Button";
 import Textarea from "components/uikit/Textarea";
 
-import { updateTodo } from "pages/TodoPage/components/TodoList/store";
-
-function TodoNote({ note, todoItem }: any) {
-  const [activeNote, setActiveNote] = useState<boolean>(false);
-
-  const { register, setValue, reset, handleSubmit } = useFormContext();
-
-  const onSubmit = (data: any, e: any) => {
-    e.preventDefault();
-    console.log(`onSubmit: data = ${JSON.stringify(data)}`);
-    updateTodo({ ...todoItem, note: data.note });
-    setActiveNote(false);
-    reset();
-  };
+function TodoNote({ note, activeNote, setActiveNote, todoItem }: any) {
+  const { register, setValue } = useFormContext();
 
   return (
     <div>
@@ -33,7 +20,7 @@ function TodoNote({ note, todoItem }: any) {
             hidden: !activeNote,
           })}
           maxLength={255}
-          disabled={!activeNote}
+          // disabled={!activeNote}
         />
 
         {note && (
@@ -71,14 +58,6 @@ function TodoNote({ note, todoItem }: any) {
             setValue("note", "");
           }}
           disabled={!activeNote}
-          hidden={!activeNote}
-          className="text-xs hover:text-blue"
-        />
-        <Button
-          type="submit"
-          name="Добавить"
-          onClick={handleSubmit(onSubmit)}
-          // disabled={!watchNote}
           hidden={!activeNote}
           className="text-xs hover:text-blue"
         />
