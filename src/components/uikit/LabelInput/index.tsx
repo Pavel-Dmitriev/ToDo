@@ -1,21 +1,11 @@
 import clsx from "clsx";
 
 import { LabelInput as StyledLabelInput } from "./styles";
+
 import IProps from "./interface";
 
 function LabelInput(props: IProps) {
-  const {
-    label,
-    description,
-    inline,
-    className,
-    labelClassName,
-    error,
-    errorText,
-    children,
-    required,
-    descriptionBottom,
-  } = props;
+  const { label, inline, className, labelClassName, error, errorText, children } = props;
 
   return (
     <StyledLabelInput inline={inline} className={clsx("max-w-full", className)} error={error}>
@@ -23,24 +13,23 @@ function LabelInput(props: IProps) {
         <>
           <p
             className={clsx(labelClassName, {
-              "mb-2": description || errorText,
-              "mb-6": !description || !errorText,
+              "mb-2": errorText,
+              "mb-6": !errorText,
             })}
           >
             {label}
-            {required && <span className="ml-4 text-red-700">*</span>}
           </p>
         </>
       )}
+
       {errorText && (
-        <p className="mb-6 text-red-700">
+        <p className="mb-6 text-xs text-red-700">
           {error && "Ошибка: "}
           {error ? errorText : ""}
         </p>
       )}
-      {description && !descriptionBottom && <p className="mb-6 text-gray-500">{description}</p>}
+
       {children}
-      {description && descriptionBottom && <p className="mb-6 text-gray-500">{description}</p>}
     </StyledLabelInput>
   );
 }

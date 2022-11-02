@@ -6,7 +6,7 @@ import LabelInput from "../LabelInput";
 import { IProps } from "./interface";
 
 function TimeInput(props: IProps) {
-  const { mask, label, description, error, rules, name } = props;
+  const { mask, label, error, rules, name } = props;
 
   const {
     control,
@@ -26,9 +26,9 @@ function TimeInput(props: IProps) {
 
         const errorText = errors?.[name]?.message;
 
-        if (label || description || errorText || error || rules) {
+        if (label || errorText || error || rules) {
           return (
-            <LabelInput label={label} description={description} error={Boolean(errorText) || error}>
+            <LabelInput label={label} error={Boolean(errorText) || error}>
               <InputMask
                 {...props}
                 mask={mask}

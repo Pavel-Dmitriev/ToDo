@@ -12,7 +12,6 @@ import { IProps } from "./interface";
 function DatePicker(props: IProps) {
   const {
     label,
-    description,
     error,
     rules,
     name,
@@ -58,9 +57,9 @@ function DatePicker(props: IProps) {
 
         const errorText = errors?.[name]?.message;
 
-        if (label || description || errorText || error || rules) {
+        if (label || errorText || error || rules) {
           return (
-            <LabelInput label={label} description={description} error={Boolean(errorText) || error}>
+            <LabelInput label={label} error={Boolean(errorText) || error}>
               <StyledDatePicker
                 {...additionalProps}
                 {...props}

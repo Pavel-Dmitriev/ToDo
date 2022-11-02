@@ -6,8 +6,11 @@ import EditIcon from "@mui/icons-material/Edit";
 import Button from "components/uikit/Button";
 import Textarea from "components/uikit/Textarea";
 
-function TodoNote({ note, activeNote, setActiveNote, todoItem }: any) {
-  const { register, setValue } = useFormContext();
+function TodoNote({ note, activeNote, setActiveNote }: any) {
+  const { register, setValue, getValues } = useFormContext();
+
+  const getValue = getValues("note");
+  console.log("🚀 ~ file: index.tsx ~ line 18 ~ TodoNote ~ getValue", getValue);
 
   return (
     <div>
@@ -48,7 +51,7 @@ function TodoNote({ note, activeNote, setActiveNote, todoItem }: any) {
           }}
           fontSize="small"
           className={clsx("mr-8 cursor-pointer hover:text-blue", {
-            "!hidden": activeNote,
+            "!hidden": !getValue || activeNote,
           })}
         />
         <Button
