@@ -6,38 +6,36 @@ import EditIcon from "@mui/icons-material/Edit";
 import Button from "components/uikit/Button";
 import Textarea from "components/uikit/Textarea";
 
-import { ITodoNote } from "./interface";
+import { ITodoTitle } from "./interface";
 
-function TodoNote({ note, activeNote, setActiveNote }: ITodoNote) {
+function TodoTitle({ title, activeTitle, setActiveTitle }: ITodoTitle) {
   const { register, setValue, getValues } = useFormContext();
 
-  const getValue = getValues("note");
-
   return (
-    <div>
-      <div className="relative flex min-h-[96px] flex-col overflow-y-auto rounded-default">
+    <div className="mb-8">
+      <div className="relative flex min-h-[46px] flex-col overflow-y-auto rounded-default">
         <Textarea
-          {...register("note")}
+          {...register("title")}
           placeholder="Добавить заметку"
-          className={clsx("bg-green absolute inset-0 min-h-[96px] flex-1 resize-none text-xs", {
-            flex: activeNote,
-            hidden: !activeNote,
+          className={clsx("absolute inset-0 min-h-[46px] flex-1 resize-none text-xs", {
+            flex: activeTitle,
+            hidden: !activeTitle,
           })}
           maxLength={255}
           // disabled={!activeNote}
         />
 
-        {note && (
+        {title && (
           <p
             className={clsx(
-              "bottom-20px rounded-dafault absolute top-0 top-0 right-0 left-0 min-h-[96px] bg-white p-8 text-xs",
+              "rounded-dafault absolute left-0 top-0 top-0 right-0 bottom-0 overflow-y-auto bg-white p-8 font-semibold leading-5",
               {
-                block: !activeNote,
-                hidden: activeNote,
+                block: !activeTitle,
+                hidden: activeTitle,
               },
             )}
           >
-            {note}
+            {title}
           </p>
         )}
       </div>
@@ -45,24 +43,25 @@ function TodoNote({ note, activeNote, setActiveNote }: ITodoNote) {
       <div className="mt-4 flex items-center justify-end">
         <EditIcon
           onClick={() => {
-            if (!activeNote) {
-              setActiveNote(true);
-              note && setValue("note", note);
+            if (!activeTitle) {
+              setActiveTitle(true);
+              title && setValue("title", title);
             }
           }}
           fontSize="small"
           className={clsx("mr-8 cursor-pointer hover:text-blue", {
-            "!hidden": !getValue || activeNote,
+            "!hidden": activeTitle,
           })}
         />
+
         <Button
           name="Отмена"
           onClick={() => {
-            setActiveNote(false);
-            setValue("note", "");
+            setActiveTitle(false);
+            // setValue("title", "");
           }}
-          disabled={!activeNote}
-          hidden={!activeNote}
+          disabled={!activeTitle}
+          hidden={!activeTitle}
           className="text-xs hover:text-blue"
         />
       </div>
@@ -70,4 +69,4 @@ function TodoNote({ note, activeNote, setActiveNote }: ITodoNote) {
   );
 }
 
-export default TodoNote;
+export default TodoTitle;

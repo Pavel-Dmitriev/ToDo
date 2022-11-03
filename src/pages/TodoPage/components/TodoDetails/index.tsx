@@ -10,6 +10,7 @@ import Button from "components/uikit/Button";
 
 import TodoReminder from "./components/TodoReminder";
 import TodoCategory from "./components/TodoCategory";
+import TodoTitle from "./components/TodoTitle";
 import TodoNote from "./components/TodoNote";
 
 import { Aside } from "./styles";
@@ -24,12 +25,14 @@ function TodoDetails(props: ITodoDetails) {
   const { isOpen, id, onClose, onDeleteTodo } = props;
 
   const [activeNote, setActiveNote] = useState<boolean>(false);
+  const [activeTitle, setActiveTitle] = useState<boolean>(false);
 
   const todoItem = useDetailsDataById(id, isOpen);
 
   const methods = useForm({
     defaultValues: {
       id: id,
+      title: todoItem?.title,
       note: todoItem?.note || "",
       categories: todoItem?.categories || null,
       reminder: {
@@ -42,15 +45,16 @@ function TodoDetails(props: ITodoDetails) {
   const { handleSubmit } = methods;
 
   const onSubmit = (data: any, e: any) => {
-    console.log("🚀 ~ file: index.tsx ~ line 42 ~ onSubmit ~ data", data);
     e.preventDefault();
     updateTodo({
       ...todoItem,
+      title: data.title,
       categories: data.categories,
       reminder: data.reminder,
       note: data.note,
     });
     setActiveNote(false);
+    setActiveTitle(false);
   };
 
   const createdAt = useMemo(
@@ -69,17 +73,14 @@ function TodoDetails(props: ITodoDetails) {
           className="mt-10 flex flex-1 flex-col overflow-y-auto overflow-x-hidden px-10 pb-16"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <div className="mb-8 flex items-center rounded-default bg-white p-16 font-semibold leading-5">
-            {todoItem?.title}
-          </div>
+          <TodoTitle
+            title={todoItem?.title as string}
+            activeTitle={activeTitle}
+            setActiveTitle={setActiveTitle}
+          />
           <TodoCategory todoItem={todoItem} />
           <TodoReminder todoItem={todoItem} />
-          <TodoNote
-            note={todoItem?.note}
-            todoItem={todoItem}
-            activeNote={activeNote}
-            setActiveNote={setActiveNote}
-          />
+          <TodoNote note={todoItem?.note} activeNote={activeNote} setActiveNote={setActiveNote} />
           <div className="flex flex-1 justify-center">
             <Button name="Отправить" className="items-center self-end" />
           </div>
