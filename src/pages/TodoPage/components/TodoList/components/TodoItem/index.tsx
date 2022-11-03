@@ -4,7 +4,7 @@ import CheckIcon from "@mui/icons-material/Check";
 
 import { List, Span } from "./styles";
 
-import TodoCategoryItem from "./TodoCategoryItem";
+import TodoCategoryItem from "components/TodoCategoryItem";
 import TodoReminderItem from "./TodoReminderItem";
 import TodoNoteItem from "./TodoNoteItem";
 
@@ -40,7 +40,9 @@ function TodoItem(props: ITodoItemProps) {
         <div className="grid grid-flow-col items-center gap-x-12">
           {note && <TodoNoteItem note={note} />}
           {reminder?.date && <TodoReminderItem reminder={reminder} />}
-          {!isEmpty(categories) && <TodoCategoryItem options={categories} />}
+          {!isEmpty(categories) && (
+            <TodoCategoryItem options={categories} className="grid grid-flow-col gap-x-8 pb-4" />
+          )}
         </div>
       </div>
     </List>

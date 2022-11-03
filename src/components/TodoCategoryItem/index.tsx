@@ -1,12 +1,12 @@
 import clsx from "clsx";
 
-import { COLOR_OPTIONS } from "pages/TodoPage/components/TodoDetails/components/TodoCategory/constants";
+import { COLOR_OPTIONS } from "./constants";
 
-import { IOption } from "components/uikit/Select/interface";
+import { ITodoCategoryItem } from "./interface";
 
-function TodoCategoryItem({ options }: { options?: IOption[] }) {
+function TodoCategoryItem({ options, className }: ITodoCategoryItem) {
   return (
-    <div className="grid grid-flow-col gap-x-8 pb-4">
+    <div className={className}>
       {options?.map((item) => (
         <div key={`item_${item.value}`}>
           <span

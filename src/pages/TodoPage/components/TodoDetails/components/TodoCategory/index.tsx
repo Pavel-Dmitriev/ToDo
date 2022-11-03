@@ -1,5 +1,7 @@
 import Select from "components/uikit/Select";
 
+import TodoCategoryItem from "components/TodoCategoryItem";
+
 import { OPTIONS } from "./constants";
 
 import { ITodoItem } from "pages/TodoPage/components/TodoList/interface";
@@ -7,6 +9,7 @@ import { ITodoItem } from "pages/TodoPage/components/TodoList/interface";
 function TodoCategory({ todoItem }: { todoItem: ITodoItem | undefined }) {
   return (
     <div className="mb-8 rounded-default bg-white p-16">
+      {todoItem?.categories && <TodoCategoryItem options={todoItem?.categories} />}
       <Select
         name="categories"
         closeMenuOnSelect={false}
