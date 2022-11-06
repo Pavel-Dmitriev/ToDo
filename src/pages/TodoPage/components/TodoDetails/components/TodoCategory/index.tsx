@@ -9,13 +9,15 @@ import { ITodoItem } from "pages/TodoPage/components/TodoList/interface";
 function TodoCategory({ todoItem }: { todoItem: ITodoItem | undefined }) {
   return (
     <div className="mb-8 rounded-default bg-white p-16">
-      {todoItem?.categories && <TodoCategoryItem options={todoItem?.categories} />}
+      {todoItem?.categories && (
+        <TodoCategoryItem options={todoItem?.categories} className="mb-8 grid grid-cols-2" />
+      )}
       <Select
         name="categories"
+        placeholder="Выберите категорию"
+        options={OPTIONS}
         closeMenuOnSelect={false}
         isMulti
-        options={OPTIONS}
-        placeholder="Выберите категорию"
       />
     </div>
   );

@@ -1,11 +1,10 @@
-import React from "react";
-import { Controller, useForm, useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import SelectComponent from "react-select";
 import tw from "twin.macro";
 
 import { IProps } from "./interface";
 
-const Select = React.forwardRef<any, IProps>((props, ref) => {
+function Select(props: IProps) {
   const { name } = props;
 
   const { control } = useFormContext();
@@ -23,19 +22,24 @@ const Select = React.forwardRef<any, IProps>((props, ref) => {
 
             return { ...provided, opacity, transition };
           },
+          menu: (provided: any) => {
+            const otherStyles = tw`z-50`;
+
+            return { ...provided, ...otherStyles };
+          },
         };
 
         return (
           <SelectComponent
-            // ref={ref}
             {...field}
             {...props}
+            noOptionsMessage={() => "Нет данных"}
             styles={customStyles}
           />
         );
       }}
     />
   );
-});
+}
 
 export default Select;
