@@ -1,10 +1,12 @@
-import { ReactNode } from "react";
-import { LabelProps } from "./types";
+import { RegisterOptions } from "react-hook-form";
 
-export interface IProps extends LabelProps {
-  children?: ReactNode;
-  name: string;
-  mask: string;
-  rules?: any;
+import ITextInput from "components/uikit/TextInput/interface";
+
+export interface IProps extends ITextInput {
+  label?: string;
   className?: string;
+  labelClassName?: string;
+  error?: boolean;
+  name: string;
+  rules?: Exclude<RegisterOptions, "valueAsNumber" | "valueAsDate" | "setValueAs">;
 }

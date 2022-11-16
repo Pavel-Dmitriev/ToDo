@@ -17,6 +17,7 @@ function DatePicker(props: IProps) {
     name,
     addRefToField,
     className,
+    labelClassName,
     format = "dd.MM.y",
     clearIcon,
   } = props;
@@ -59,7 +60,11 @@ function DatePicker(props: IProps) {
 
         if (label || errorText || error || rules) {
           return (
-            <LabelInput label={label} error={Boolean(errorText) || error}>
+            <LabelInput
+              label={label}
+              error={Boolean(errorText) || error}
+              labelClassName={labelClassName}
+            >
               <StyledDatePicker
                 {...additionalProps}
                 {...props}

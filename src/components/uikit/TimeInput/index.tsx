@@ -1,16 +1,16 @@
 import { Controller, useFormContext } from "react-hook-form";
+import { PatternFormat, PatternFormatProps } from "react-number-format";
 
-import InputMask from "../InputMask";
 import LabelInput from "../LabelInput";
+import TextInput from "../TextInput";
 
 import { IProps } from "./interface";
 
-function TimeInput(props: IProps) {
-  const { mask, label, error, rules, name } = props;
+function TimeInput(props: IProps & PatternFormatProps) {
+  const { label, className, labelClassName, error, rules, name } = props;
 
   const {
     control,
-    getValues,
     formState: { errors },
   } = useFormContext();
 
@@ -18,37 +18,43 @@ function TimeInput(props: IProps) {
     <Controller
       control={control}
       name={name}
-      defaultValue={getValues(name)}
-      render={({ field: { value, onBlur, onChange } }) => {
+      rules={rules}
+      render={({ field: { value, onBlur, onChange, ref } }) => {
+        const errorText = errors?.[name]?.message;
+
         const handleChange = (value: any) => {
           onChange(value);
         };
 
-        const errorText = errors?.[name]?.message;
-
         if (label || errorText || error || rules) {
           return (
-            <LabelInput label={label} error={Boolean(errorText) || error}>
-              <InputMask
-                {...props}
-                mask={mask}
+            <LabelInput
+              label={label}
+              error={Boolean(errorText) || error}
+              labelClassName={labelClassName}
+            >
+              <PatternFormat
+                getInputRef={ref}
+                customInput={TextInput}
                 value={value as any}
-                defaultValue={value}
                 onBlur={onBlur}
+                className={className}
                 onChange={handleChange}
+                {...props}
               />
             </LabelInput>
           );
         }
 
         return (
-          <InputMask
-            {...props}
-            mask={mask}
+          <PatternFormat
+            getInputRef={ref}
+            customInput={TextInput}
             value={value as any}
-            defaultValue={value}
             onBlur={onBlur}
+            className={className}
             onChange={handleChange}
+            {...props}
           />
         );
       }}

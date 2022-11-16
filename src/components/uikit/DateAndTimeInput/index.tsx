@@ -1,6 +1,3 @@
-import { useFormState } from "react-hook-form";
-import clsx from "clsx";
-
 import TimeInput from "../TimeInput";
 import DatePicker from "../DatePicker";
 
@@ -15,12 +12,16 @@ function DateAndTimeInput(props: IProps) {
         label={isDescription ? "Дата" : undefined}
         name={`${dateName}`}
         className="inline-flex w-[200px]"
+        labelClassName="text-xs"
       />
       <TimeInput
         label={isDescription ? "Время" : undefined}
         name={`${timeName}`}
-        mask="__:__"
-        className="w-[105px]"
+        placeholder="__:__"
+        format="##:##"
+        mask="_"
+        labelClassName="text-xs"
+        className="transition-[border-color, color, fill, stroke] inline-flex  !min-h-48 w-[105px] items-center border-1 !border-solid border-gray-400 px-12 placeholder-gray-500 hover:border-gray-500 focus:text-gray-900"
       />
     </div>
   );

@@ -9,12 +9,12 @@ function TodoReminder({ todoItem }: { todoItem?: ITodoItem }) {
   const { register } = useFormContext();
 
   return (
-    <div className="mb-12 flex flex-col">
-      <p className="mb-4">Добавить напоминание:</p>
+    <div className="mb-12 flex flex-col rounded-default bg-white p-8">
+      <p className="mb-4 text-sm">Добавить напоминание:</p>
       <TextInput
         {...register("reminder.name")}
         placeholder="Добавить название"
-        className="mb-8 text-xs"
+        className="mb-8 min-h-48 border-1 !border-solid border-gray-400 bg-white px-12 text-xs transition-colors duration-300 hover:border-gray-900"
       />
       <DateAndTimeInput dateName="reminder.date" timeName="reminder.time" />
     </div>
