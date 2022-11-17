@@ -3,15 +3,13 @@ import { FormProvider, useForm } from "react-hook-form";
 import clsx from "clsx";
 import dayjs from "dayjs";
 
-import DeleteIcon from "@mui/icons-material/Delete";
-import CloseCard from "components/uikit/icons/CloseCard";
-
 import Button from "components/uikit/Button";
 
 import TodoReminder from "./components/TodoReminder";
 import TodoCategory from "./components/TodoCategory";
 import TodoTitle from "./components/TodoTitle";
 import TodoNote from "./components/TodoNote";
+import FooterButtons from "./components/FooterButtons";
 
 import { Aside } from "./styles";
 
@@ -20,6 +18,7 @@ import useDetailsDataById from "./hooks/useDetailsDataById";
 import { updateTodo } from "pages/TodoPage/components/TodoList/store";
 
 import { ITodoDetails } from "./interface";
+import { ITodoItem } from "../TodoList/interface";
 
 function TodoDetails(props: ITodoDetails) {
   const { isOpen, id, onClose, onDeleteTodo } = props;
@@ -85,15 +84,12 @@ function TodoDetails(props: ITodoDetails) {
             <Button name="Отправить" className="items-center self-end" />
           </div>
         </form>
-        <div className="mx-10 flex items-center justify-between border-t-1 border-gray-200 py-16">
-          <button onClick={() => onClose(todoItem!)}>
-            <CloseCard />
-          </button>
-          <span className="text-2xs text-gray-300">Создано {createdAt}</span>
-          <button onClick={() => onDeleteTodo(todoItem)}>
-            <DeleteIcon fontSize="small" />
-          </button>
-        </div>
+        <FooterButtons
+          todoItem={todoItem as ITodoItem}
+          onClose={onClose}
+          onDeleteTodo={onDeleteTodo}
+          createdAt={createdAt}
+        />
       </Aside>
     </FormProvider>
   );
