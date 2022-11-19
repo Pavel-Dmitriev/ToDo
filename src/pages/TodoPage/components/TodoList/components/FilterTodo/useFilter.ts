@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { filterTodo } from "../../store";
+import { filterTodo } from "store";
 
 function useFilter() {
   const [active, setActive] = useState<string>("all");

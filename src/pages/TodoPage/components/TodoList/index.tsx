@@ -7,9 +7,9 @@ import NoData from "components/uikit/NoData";
 import TodoItem from "./components/TodoItem";
 import FilterTodo from "./components/FilterTodo";
 
-import { $todoList, openTodoDetails, toggleTodo } from "./store";
+import { $todoList, openTodoDetails, toggleTodo } from "store";
 
-import { ITodoList } from "./interface";
+import { ITodoList } from "interface";
 
 function TodoList({ setIsOpen, setActiveId }: ITodoList) {
   const items = useStore($todoList);

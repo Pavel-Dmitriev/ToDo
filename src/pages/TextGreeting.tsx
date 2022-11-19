@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useStore } from "effector-react";
 
-import { $todoList, getTodos } from "pages/TodoPage/components/TodoList/store";
+import { $todoList, getTodos } from "store";
 
 function TextGreeting() {
   const todos = useStore($todoList);

@@ -1,4 +1,4 @@
-import { ITodoItem } from "pages/TodoPage/components/TodoList/interface";
+import { ITodoItem } from "interface";
 
 export interface IFooterButtons {
   todoItem: ITodoItem;

@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
 import { IOption } from "components/uikit/Select/interface";
-import { Сategories } from "types/types";
 
 export interface ITodoItem {
   id: string;
@@ -17,7 +16,6 @@ export interface ITodoItem {
 
 export interface ITodoList {
   setActiveId: Dispatch<SetStateAction<string>>;
-  // setIsOpen: () => void;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 

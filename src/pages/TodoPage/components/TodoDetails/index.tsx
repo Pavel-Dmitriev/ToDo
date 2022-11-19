@@ -15,10 +15,10 @@ import { Aside } from "./styles";
 
 import useDetailsDataById from "./hooks/useDetailsDataById";
 
-import { updateTodo } from "pages/TodoPage/components/TodoList/store";
+import { updateTodo } from "store";
 
 import { ITodoDetails } from "./interface";
-import { ITodoItem } from "../TodoList/interface";
+import { ITodoItem } from "interface";
 
 function TodoDetails(props: ITodoDetails) {
   const { isOpen, id, onClose, onDeleteTodo } = props;

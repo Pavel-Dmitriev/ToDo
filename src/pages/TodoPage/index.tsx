@@ -4,9 +4,9 @@ import FormTextInput from "./components/FormTextInput";
 import TodoList from "./components/TodoList";
 import TodoDetails from "./components/TodoDetails";
 
-import { deleteTodo, getTodos, openTodoDetails } from "./components/TodoList/store";
+import { deleteTodo, getTodos, openTodoDetails } from "store";
 
-import { ITodoItem } from "./components/TodoList/interface";
+import { ITodoItem } from "interface";
 
 function TodoPage() {
   const [activeId, setActiveId] = useState<string>("");

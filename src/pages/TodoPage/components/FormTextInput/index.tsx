@@ -4,7 +4,7 @@ import LabelInput from "components/uikit/LabelInput";
 import TextInput from "components/uikit/TextInput";
 import Button from "components/uikit/Button";
 
-import { addTodo } from "pages/TodoPage/components/TodoList/store";
+import { addTodo } from "store";
 
 import { IUseForm } from "./interface";
 

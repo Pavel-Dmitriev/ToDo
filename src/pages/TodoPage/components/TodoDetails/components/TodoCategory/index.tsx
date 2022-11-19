@@ -4,7 +4,7 @@ import TodoCategoryItem from "components/TodoCategoryItem";
 
 import { OPTIONS } from "./constants";
 
-import { ITodoItem } from "pages/TodoPage/components/TodoList/interface";
+import { ITodoItem } from "interface";
 
 function TodoCategory({ todoItem }: { todoItem: ITodoItem | undefined }) {
   return (

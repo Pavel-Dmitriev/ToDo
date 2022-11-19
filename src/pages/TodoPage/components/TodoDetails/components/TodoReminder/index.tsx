@@ -3,7 +3,7 @@ import { useFormContext } from "react-hook-form";
 import TextInput from "components/uikit/TextInput";
 import DateAndTimeInput from "components/uikit/DateAndTimeInput";
 
-import { ITodoItem } from "pages/TodoPage/components/TodoList/interface";
+import { ITodoItem } from "interface";
 
 function TodoReminder({ todoItem }: { todoItem?: ITodoItem }) {
   const { register } = useFormContext();
