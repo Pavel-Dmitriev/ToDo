@@ -80,8 +80,11 @@ function TodoDetails(props: ITodoDetails) {
           <TodoCategory todoItem={todoItem} />
           <TodoReminder todoItem={todoItem} />
           <TodoNote note={todoItem?.note} activeNote={activeNote} setActiveNote={setActiveNote} />
-          <div className="flex flex-1 justify-center">
-            <Button name="Отправить" className="items-center self-end" />
+          <div className="mt-12 flex flex-1 justify-center">
+            <Button
+              name="Отправить"
+              className="transition-[background-color, color] flex-1 flex-col self-end border-1 border-blue bg-white duration-300 hover:bg-blue hover:text-white"
+            />
           </div>
         </form>
         <FooterButtons
