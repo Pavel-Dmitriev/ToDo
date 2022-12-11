@@ -1,14 +1,13 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import clsx from "clsx";
 import dayjs from "dayjs";
 
 import Button from "components/uikit/Button";
 
+import TextareaWrapper from "./components/TextAreaWrapper";
 import TodoReminder from "./components/TodoReminder";
 import TodoCategory from "./components/TodoCategory";
-import TodoTitle from "./components/TodoTitle";
-import TodoNote from "./components/TodoNote";
 import FooterButtons from "./components/FooterButtons";
 
 import { Aside } from "./styles";
@@ -17,31 +16,25 @@ import useDetailsDataById from "./hooks/useDetailsDataById";
 
 import { updateTodo } from "store";
 
+import { DEFAULT_VALUES } from "./constants";
+
 import { ITodoDetails } from "./interface";
 import { ITodoItem } from "interface";
 
 function TodoDetails(props: ITodoDetails) {
   const { isOpen, id, onClose, onDeleteTodo } = props;
 
-  const [activeNote, setActiveNote] = useState<boolean>(false);
-  const [activeTitle, setActiveTitle] = useState<boolean>(false);
-
   const todoItem = useDetailsDataById(id, isOpen);
 
   const methods = useForm({
-    defaultValues: {
-      id: id,
-      title: todoItem?.title,
-      note: todoItem?.note || "",
-      categories: todoItem?.categories || null,
-      reminder: {
-        name: todoItem?.reminder?.name || "",
-        date: todoItem?.reminder?.date || null,
-        time: todoItem?.reminder?.time || "",
-      },
-    },
+    defaultValues: DEFAULT_VALUES,
   });
-  const { handleSubmit } = methods;
+  const {
+    handleSubmit,
+    control,
+    setValue,
+    formState: { isDirty, isValid },
+  } = methods;
 
   const onSubmit = (data: any, e: any) => {
     e.preventDefault();
@@ -52,8 +45,6 @@ function TodoDetails(props: ITodoDetails) {
       reminder: data.reminder,
       note: data.note,
     });
-    setActiveNote(false);
-    setActiveTitle(false);
   };
 
   const createdAt = useMemo(
@@ -61,29 +52,44 @@ function TodoDetails(props: ITodoDetails) {
     [todoItem?.createdAt],
   );
 
+  useEffect(() => {
+    setValue("title", todoItem?.title as string);
+    setValue("note", todoItem?.note as string);
+  }, [isOpen]);
+
   return (
     <FormProvider {...methods}>
       <Aside
         className={clsx(
-          "flex w-[360px] max-w-[360px] flex-1 flex-col justify-between  bg-gray transition-[width] duration-300 ease-out",
+          "duration-1500 flex flex-1 flex-col justify-between bg-gray transition-[max-width] ease-in",
+          {
+            "max-w-[360px]": isOpen,
+            "max-w-0": !isOpen,
+          },
         )}
       >
         <form
           className="mt-10 flex flex-1 flex-col overflow-y-auto overflow-x-hidden px-10 pb-16"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <TodoTitle
-            title={todoItem?.title as string}
-            activeTitle={activeTitle}
-            setActiveTitle={setActiveTitle}
+          <TextareaWrapper
+            text={todoItem?.title as string}
+            name="title"
+            placeholder="Добавить название дела"
           />
           <TodoCategory todoItem={todoItem} />
           <TodoReminder todoItem={todoItem} />
-          <TodoNote note={todoItem?.note} activeNote={activeNote} setActiveNote={setActiveNote} />
+          <TextareaWrapper
+            text={todoItem?.note as string}
+            name="note"
+            placeholder="Добавить заметку"
+            className="min-h-[96px]"
+          />
           <div className="mt-12 flex flex-1 justify-center">
             <Button
               name="Отправить"
               className="transition-[background-color, color] flex-1 flex-col self-end border-1 border-blue bg-white duration-300 hover:bg-blue hover:text-white"
+              disabled={!isDirty || !isValid}
             />
           </div>
         </form>

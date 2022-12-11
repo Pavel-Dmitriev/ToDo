@@ -7,6 +7,6 @@ export interface IColor {
 }
 
 export interface ITodoCategoryItem {
-  options?: IOption[];
+  options?: IOption[] | null;
   className?: string;
 }

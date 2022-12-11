@@ -9,7 +9,7 @@ import { deleteTodo, getTodos, openTodoDetails } from "store";
 import { ITodoItem } from "interface";
 
 function TodoPage() {
-  const [activeId, setActiveId] = useState<string>("");
+  const [activeId, setActiveId] = useState<string | null>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const onCloseTodoDetails = (item: ITodoItem) => {
@@ -44,14 +44,12 @@ function TodoPage() {
           {/* <DivWithBackground /> */}
         </div>
       </div>
-      {isOpen && (
-        <TodoDetails
-          isOpen={isOpen}
-          id={activeId}
-          onClose={onCloseTodoDetails}
-          onDeleteTodo={handleDeleteTodo}
-        />
-      )}
+      <TodoDetails
+        isOpen={isOpen}
+        id={activeId}
+        onClose={onCloseTodoDetails}
+        onDeleteTodo={handleDeleteTodo}
+      />
     </>
   );
 }

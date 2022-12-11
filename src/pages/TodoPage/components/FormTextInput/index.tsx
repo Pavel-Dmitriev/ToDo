@@ -50,7 +50,7 @@ function FormTextInput() {
           <TextInput
             {...register("title", validationRules)}
             placeholder="Добавить дело"
-            className="mb-8 w-[100%] shadow-[0_-17px_0_-16px_#2564cf_inset] placeholder:text-blue hover:placeholder:text-gray-300 focus:placeholder:text-gray-300"
+            className="mb-8 w-[100%] border-none shadow-[0_-17px_0_-16px_#2564cf_inset] placeholder:text-blue hover:placeholder:text-gray-300 focus:outline-none focus:placeholder:text-gray-300"
           />
         }
       />
