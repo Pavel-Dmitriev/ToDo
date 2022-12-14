@@ -1,3 +1,4 @@
+import { IOption } from "components/uikit/Select/interface";
 import { ITodoItem } from "interface";
 
 export interface ITodoDetails {
@@ -5,4 +6,15 @@ export interface ITodoDetails {
   isOpen: boolean;
   onClose: (data: ITodoItem) => void;
   onDeleteTodo: (data: any) => void;
+}
+
+export interface IFormValues {
+  title: string;
+  note: string;
+  categories: IOption[] | [];
+  reminder: {
+    name: string;
+    date: Date | string;
+    time: Date | string;
+  };
 }

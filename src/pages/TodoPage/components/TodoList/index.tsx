@@ -11,7 +11,7 @@ import { $todoList, openTodoDetails, toggleTodo } from "store";
 
 import { ITodoList } from "interface";
 
-function TodoList({ setIsOpen, setActiveId }: ITodoList) {
+function TodoList({ onIsOpen, onActiveId }: ITodoList) {
   const items = useStore($todoList);
 
   if (!items?.length) return <NoData />;
@@ -23,24 +23,22 @@ function TodoList({ setIsOpen, setActiveId }: ITodoList) {
         {items?.map((item) => {
           const { id, isOpen } = item;
 
-          const toggleTodoItem = () => {
+          const markCompletionTodo = () => {
             toggleTodo(item);
           };
 
           const onToggleTodoDetails = () => {
-            setActiveId(id);
+            onActiveId(id);
             openTodoDetails(item);
-            setIsOpen(!isOpen);
+            onIsOpen(!isOpen);
           };
 
           return (
             <TodoItem
-              {...item}
-              key={`todo_item_${id}`}
-              toggle={toggleTodoItem}
+              key={id}
+              markCompletionTodo={markCompletionTodo}
               onToggleTodoDetails={onToggleTodoDetails}
-              setOpen={setIsOpen}
-              // deleteTodo={handleDeleteTodo}
+              {...item}
             />
           );
         })}

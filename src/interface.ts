@@ -8,15 +8,15 @@ export interface ITodoItem {
   categories?: IOption[] | null;
   reminder?: IReminder | null;
   done: boolean;
-  toggle?: () => void;
+  markCompletionTodo?: () => void;
   isOpen: boolean;
   toggleTodoDetails?: () => {};
   createdAt: Date | string | null;
 }
 
 export interface ITodoList {
-  setActiveId: Dispatch<SetStateAction<string | null>>;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
+  onActiveId: Dispatch<SetStateAction<string | null>>;
+  onIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface IReminder {

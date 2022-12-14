@@ -11,8 +11,17 @@ import TodoNoteItem from "./TodoNoteItem";
 import { ITodoItemProps } from "./interface";
 
 function TodoItem(props: ITodoItemProps) {
-  const { id, title, note, categories, reminder, done, toggle, onToggleTodoDetails, isOpen } =
-    props;
+  const {
+    id,
+    title,
+    note,
+    categories,
+    reminder,
+    done,
+    markCompletionTodo,
+    onToggleTodoDetails,
+    isOpen,
+  } = props;
 
   return (
     <List
@@ -23,7 +32,7 @@ function TodoItem(props: ITodoItemProps) {
         },
       )}
     >
-      <Span onClick={toggle}>
+      <Span onClick={markCompletionTodo}>
         {done && (
           <i className="flex items-center justify-center">
             <CheckIcon color="inherit" fontSize="inherit" />

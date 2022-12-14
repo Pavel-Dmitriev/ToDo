@@ -22,13 +22,6 @@ function TodoPage() {
     setIsOpen(false);
   };
 
-  // const onCloseTodoDetails = (item: any) => {
-  //   // handleToggleTodoDetails(id);
-  //   openTodoDetails(item);
-  //   setOpen();
-  //   console.log("close todo details");
-  // };
-
   useEffect(() => {
     getTodos();
   }, []);
@@ -40,8 +33,7 @@ function TodoPage() {
           <FormTextInput />
         </div>
         <div>
-          <TodoList setIsOpen={setIsOpen} setActiveId={setActiveId} />
-          {/* <DivWithBackground /> */}
+          <TodoList onIsOpen={setIsOpen} onActiveId={setActiveId} />
         </div>
       </div>
       <TodoDetails

@@ -1,5 +1,5 @@
-import { useEffect, useMemo } from "react";
-import { FormProvider, useForm } from "react-hook-form";
+import { BaseSyntheticEvent, useEffect, useMemo } from "react";
+import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import clsx from "clsx";
 import dayjs from "dayjs";
 
@@ -18,7 +18,7 @@ import { updateTodo } from "store";
 
 import { DEFAULT_VALUES } from "./constants";
 
-import { ITodoDetails } from "./interface";
+import { IFormValues, ITodoDetails } from "./interface";
 import { ITodoItem } from "interface";
 
 function TodoDetails(props: ITodoDetails) {
@@ -26,18 +26,21 @@ function TodoDetails(props: ITodoDetails) {
 
   const todoItem = useDetailsDataById(id, isOpen);
 
-  const methods = useForm({
+  const methods = useForm<IFormValues>({
     defaultValues: DEFAULT_VALUES,
   });
   const {
     handleSubmit,
-    control,
     setValue,
     formState: { isDirty, isValid },
   } = methods;
 
-  const onSubmit = (data: any, e: any) => {
-    e.preventDefault();
+  const onSubmit: SubmitHandler<IFormValues> = (
+    data: IFormValues,
+    event?: BaseSyntheticEvent<object, any, any> | undefined,
+  ) => {
+    event?.preventDefault();
+
     updateTodo({
       ...todoItem,
       title: data.title,
@@ -61,7 +64,7 @@ function TodoDetails(props: ITodoDetails) {
     <FormProvider {...methods}>
       <Aside
         className={clsx(
-          "duration-1500 flex flex-1 flex-col justify-between bg-gray transition-[max-width] ease-in",
+          "duration-1500 justiAlso for events instead of React.SyntheticEvent, you can also type them as following: Event, MouseEvent, KeyboardEvent...etc, depends on the use case of the handler.fy-between flex flex-1 flex-col bg-gray transition-[max-width] ease-in",
           {
             "max-w-[360px]": isOpen,
             "max-w-0": !isOpen,
