@@ -18,8 +18,9 @@ import { updateTodo } from "store";
 
 import { DEFAULT_VALUES } from "./constants";
 
+import { IOption } from "components/uikit/Select/interface";
 import { IFormValues, ITodoDetails } from "./interface";
-import { ITodoItem } from "interface";
+import { IReminder, ITodoItem } from "interface";
 
 function TodoDetails(props: ITodoDetails) {
   const { isOpen, id, onClose, onDeleteTodo } = props;
@@ -32,7 +33,8 @@ function TodoDetails(props: ITodoDetails) {
   const {
     handleSubmit,
     setValue,
-    formState: { isDirty, isValid },
+    reset,
+    formState: { isDirty, isValid, isSubmitSuccessful },
   } = methods;
 
   const onSubmit: SubmitHandler<IFormValues> = (
@@ -58,7 +60,26 @@ function TodoDetails(props: ITodoDetails) {
   useEffect(() => {
     setValue("title", todoItem?.title as string);
     setValue("note", todoItem?.note as string);
+    setValue("categories", todoItem?.categories as IOption[]);
+    setValue("reminder", {
+      name: todoItem?.reminder?.name,
+      date: todoItem?.reminder?.date,
+      time: todoItem?.reminder?.time,
+    } as IReminder);
   }, [isOpen]);
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset({
+        categories: DEFAULT_VALUES.categories,
+        reminder: {
+          name: DEFAULT_VALUES.reminder.name,
+          date: DEFAULT_VALUES.reminder.date,
+          time: DEFAULT_VALUES.reminder.time,
+        },
+      });
+    }
+  }, [isSubmitSuccessful, todoItem, reset]);
 
   return (
     <FormProvider {...methods}>
