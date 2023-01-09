@@ -34,7 +34,7 @@ function TodoDetails(props: ITodoDetails) {
     handleSubmit,
     setValue,
     reset,
-    formState: { isDirty, isValid, isSubmitSuccessful },
+    formState: { isDirty, isSubmitSuccessful },
   } = methods;
 
   const onSubmit: SubmitHandler<IFormValues> = (
@@ -79,7 +79,7 @@ function TodoDetails(props: ITodoDetails) {
         },
       });
     }
-  }, [isSubmitSuccessful, todoItem, reset]);
+  }, [isSubmitSuccessful]);
 
   return (
     <FormProvider {...methods}>
@@ -113,7 +113,7 @@ function TodoDetails(props: ITodoDetails) {
             <Button
               name="Отправить"
               className="transition-[background-color, color] flex-1 flex-col self-end border-1 border-blue bg-white duration-300 hover:bg-blue hover:text-white"
-              disabled={!isDirty || !isValid}
+              disabled={!isDirty}
             />
           </div>
         </form>

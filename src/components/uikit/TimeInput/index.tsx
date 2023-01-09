@@ -4,6 +4,8 @@ import { PatternFormat, PatternFormatProps } from "react-number-format";
 import LabelInput from "../LabelInput";
 import TextInput from "../TextInput";
 
+import useErrorText from "hooks/useErrorText";
+
 import { IProps } from "./interface";
 
 function TimeInput(props: IProps & PatternFormatProps) {
@@ -14,14 +16,14 @@ function TimeInput(props: IProps & PatternFormatProps) {
     formState: { errors },
   } = useFormContext();
 
+  const errorText = useErrorText(name, errors);
+
   return (
     <Controller
       control={control}
       name={name}
       rules={rules}
       render={({ field: { value, onBlur, onChange, ref } }) => {
-        const errorText = errors?.[name]?.message;
-
         const handleChange = (value: any) => {
           onChange(value);
         };
@@ -31,7 +33,8 @@ function TimeInput(props: IProps & PatternFormatProps) {
             <LabelInput
               label={label}
               error={Boolean(errorText) || error}
-              labelClassName={labelClassName}
+              errorText={errorText}
+              className={labelClassName}
             >
               <PatternFormat
                 getInputRef={ref}
@@ -40,6 +43,7 @@ function TimeInput(props: IProps & PatternFormatProps) {
                 onBlur={onBlur}
                 className={className}
                 onChange={handleChange}
+                error={Boolean(errorText) || error}
                 {...props}
               />
             </LabelInput>
@@ -54,6 +58,7 @@ function TimeInput(props: IProps & PatternFormatProps) {
             onBlur={onBlur}
             className={className}
             onChange={handleChange}
+            error={Boolean(errorText) || error}
             {...props}
           />
         );

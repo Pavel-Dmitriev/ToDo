@@ -3,9 +3,11 @@ import { Controller, useFormContext } from "react-hook-form";
 
 import CalendarToday from "@mui/icons-material/CalendarToday";
 
+import { StyledDatePicker } from "./styles";
+
 import LabelInput from "components/uikit/LabelInput";
 
-import { StyledDatePicker } from "./styles";
+import useErrorText from "hooks/useErrorText";
 
 import { IProps } from "./interface";
 
@@ -29,6 +31,8 @@ function DatePicker(props: IProps) {
     getValues,
     formState: { errors },
   } = useFormContext();
+
+  const errorText = useErrorText(name, errors);
 
   useEffect(() => {
     return () => {
@@ -55,8 +59,6 @@ function DatePicker(props: IProps) {
             props.onChangeValue(value);
           }
         };
-
-        const errorText = errors?.[name]?.message;
 
         if (label || errorText || error || rules) {
           return (
