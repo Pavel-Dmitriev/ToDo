@@ -1,5 +1,6 @@
-import { getLocalStorageTodos, setLocalStorageTodos } from "api/localStorage";
 import { createEvent, createStore } from "effector-logger";
+
+import { getLocalStorageTodos, setLocalStorageTodos } from "api/localStorage";
 
 import { ITodoItem } from "./interface";
 

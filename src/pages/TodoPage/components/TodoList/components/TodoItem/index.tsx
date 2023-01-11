@@ -48,7 +48,9 @@ function TodoItem(props: ITodoItemProps) {
         </button>
         <div className="grid grid-flow-col items-center gap-x-12">
           {note && <TodoNoteItem note={note} />}
-          {reminder?.date && <TodoReminderItem reminder={reminder} />}
+          {(reminder?.name || reminder?.date || reminder?.time) && (
+            <TodoReminderItem reminder={reminder} />
+          )}
           {!isEmpty(categories) && (
             <TodoCategoryItem options={categories} className="grid grid-flow-col gap-x-8 pb-4" />
           )}
