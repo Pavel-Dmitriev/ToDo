@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useStore } from "effector-react";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -7,12 +8,16 @@ import NoData from "components/uikit/NoData";
 import TodoItem from "./components/TodoItem";
 import FilterTodo from "./components/FilterTodo";
 
-import { $todoList, openTodoDetails, toggleTodo } from "store";
+import { $todoList, openTodoDetails, resetTodoList, toggleTodo } from "store";
 
 import { ITodoList } from "interface";
 
 function TodoList({ onIsOpen, onActiveId }: ITodoList) {
   const items = useStore($todoList);
+
+  useEffect(() => {
+    return () => resetTodoList();
+  }, []);
 
   if (!items?.length) return <NoData />;
 

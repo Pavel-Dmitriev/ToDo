@@ -12,6 +12,7 @@ export const toggleTodo = createEvent<ITodoItem>("toggleTodo");
 export const openTodoDetails = createEvent<ITodoItem>("openTodoDetails");
 export const getTodo = createEvent<any>("getTodo");
 export const getTodos = createEvent<any>("getTodos");
+export const resetTodoList = createEvent<any>("resetTodoList");
 
 const toggleTodoItem = (todo: ITodoItem): ITodoItem => ({
   ...todo,
@@ -93,4 +94,5 @@ export const $todoList = createStore<ITodoItem[]>([])
     return localStorageTodos?.length
       ? localStorageTodos.map((item) => ({ ...item, isOpen: false }))
       : [];
-  });
+  })
+  .reset(resetTodoList);
