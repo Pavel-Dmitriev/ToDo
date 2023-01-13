@@ -1,4 +1,4 @@
-import { createEvent, createStore } from "effector-logger";
+import { createEvent, createStore } from "effector";
 
 import { getLocalStorageTodos, setLocalStorageTodos } from "api/localStorage";
 
@@ -28,6 +28,7 @@ export const $todoList = createStore<ITodoItem[]>([])
   .on(toggleTodo, (list, todo: ITodoItem): ITodoItem[] => {
     const todos = list.map((item) => (item === todo ? toggleTodoItem(todo) : item));
     setLocalStorageTodos(todos);
+
     return todos;
   })
   .on(addTodo, (list, data: ITodoItem): ITodoItem[] => {
@@ -51,48 +52,52 @@ export const $todoList = createStore<ITodoItem[]>([])
   })
   .on(filterTodo, (_, filter) => {
     const todos = getLocalStorageTodos();
-    return filter === "Все"
-      ? todos
-      : todos?.filter((todo) => {
-          if (filter === "Невыполненные") return !todo.done;
-          return todo.done;
-        });
+
+    if (filter === "Все") return todos;
+
+    const filterTodos = todos?.filter((todo) =>
+      filter === "Невыполненные" ? !todo.done : todo.done,
+    );
+
+    return filterTodos;
   })
   .on(updateTodo, (list, todo: ITodoItem) => {
-    const todos = list.map((item) =>
-      item.id === todo.id
-        ? { ...todo, note: todo.note, categories: todo.categories, reminder: todo.reminder }
-        : item,
-    );
-    setLocalStorageTodos(todos);
+    const todos = list.map((item) => {
+      if (item.id === todo.id) {
+        return { ...todo, note: todo.note, categories: todo.categories, reminder: todo.reminder };
+      }
 
-    return todos;
-  })
-  .on(deleteTodo, (list, todo: string) => {
-    let todos = list.filter((item) => {
-      return item.id !== todo;
+      return item;
     });
     setLocalStorageTodos(todos);
 
     return todos;
   })
+  .on(deleteTodo, (list, todoId: string) => {
+    const todos: ITodoItem[] = list.filter((item) => item.id !== todoId);
+    setLocalStorageTodos(todos);
+
+    return todos;
+  })
   .on(openTodoDetails, (list, todo: ITodoItem): ITodoItem[] => {
-    let todos = list.map((item) =>
-      item === todo
-        ? toggleTodoDetails(todo)
-        : {
-            ...item,
-            isOpen: false,
-          },
-    );
+    const todos = list.map((item) => {
+      if (item === todo) toggleTodoDetails(todo);
+
+      return {
+        ...item,
+        isOpen: false,
+      };
+    });
     setLocalStorageTodos(todos);
 
     return todos;
   })
   .on(getTodos, (): ITodoItem[] | void => {
     const localStorageTodos = getLocalStorageTodos();
-    return localStorageTodos?.length
-      ? localStorageTodos.map((item) => ({ ...item, isOpen: false }))
-      : [];
+
+    if (localStorageTodos?.length)
+      return localStorageTodos.map((item) => ({ ...item, isOpen: false }));
+
+    return [];
   })
   .reset(resetTodoList);
