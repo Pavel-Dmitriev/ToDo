@@ -1,4 +1,4 @@
-import NoteIcon from "components/uikit/icons/NoteIcon";
+import NoteIcon from "components/icons/NoteIcon";
 
 function TodoNoteItem({ note }: { note: string }) {
   return (

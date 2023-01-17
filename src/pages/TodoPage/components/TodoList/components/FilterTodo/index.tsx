@@ -1,7 +1,7 @@
 import clsx from "clsx";
 
-import Button from "components/uikit/Button";
-import Dropdown from "components/uikit/Dropdown";
+import Button from "components/Button";
+import Dropdown from "components/Dropdown";
 
 import ButtonWithText from "./ButtonWithText";
 

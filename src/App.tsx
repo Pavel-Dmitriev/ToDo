@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "effector-logger/inspector";
 
 import Root from "./pages/Root";
 import TodoPage from "pages/TodoPage";

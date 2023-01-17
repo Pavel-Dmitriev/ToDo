@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useFormContext } from "react-hook-form";
 import clsx from "clsx";
 
-import Textarea from "components/uikit/Textarea";
+import Textarea from "components/Textarea";
 
 import { ITextAreaWprapper } from "./interface";
 

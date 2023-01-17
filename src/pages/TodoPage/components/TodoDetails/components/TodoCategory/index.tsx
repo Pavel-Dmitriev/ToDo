@@ -1,4 +1,4 @@
-import Select from "components/uikit/Select";
+import Select from "components/Select";
 
 import TodoCategoryItem from "components/TodoCategoryItem";
 
@@ -12,6 +12,7 @@ function TodoCategory({ todoItem }: { todoItem: ITodoItem | undefined }) {
       {todoItem?.categories && (
         <TodoCategoryItem options={todoItem?.categories} className="mb-8 grid grid-cols-2" />
       )}
+
       <Select
         name="categories"
         placeholder="Выберите категорию"

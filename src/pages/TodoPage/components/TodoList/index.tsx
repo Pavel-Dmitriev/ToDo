@@ -1,9 +1,7 @@
 import { useEffect } from "react";
-import { useStore } from "effector-react";
+import { useUnit } from "effector-react";
 
-import "react-toastify/dist/ReactToastify.css";
-
-import NoData from "components/uikit/NoData";
+import NoData from "components/NoData";
 
 import TodoItem from "./components/TodoItem";
 import FilterTodo from "./components/FilterTodo";
@@ -13,7 +11,7 @@ import { $todoList, openTodoDetails, resetTodoList, toggleTodo } from "store";
 import { ITodoList } from "interface";
 
 function TodoList({ onIsOpen, onActiveId }: ITodoList) {
-  const items = useStore($todoList);
+  const items = useUnit($todoList);
 
   useEffect(() => {
     return () => resetTodoList();
@@ -28,7 +26,7 @@ function TodoList({ onIsOpen, onActiveId }: ITodoList) {
         {items?.map((item) => {
           const { id, isOpen } = item;
 
-          const markCompletionTodo = () => {
+          const onMarkCompletionTodo = () => {
             toggleTodo(item);
           };
 
@@ -38,14 +36,7 @@ function TodoList({ onIsOpen, onActiveId }: ITodoList) {
             onIsOpen(!isOpen);
           };
 
-          return (
-            <TodoItem
-              key={id}
-              markCompletionTodo={markCompletionTodo}
-              onToggleTodoDetails={onToggleTodoDetails}
-              {...item}
-            />
-          );
+          return <TodoItem key={id} {...{ ...item, onMarkCompletionTodo, onToggleTodoDetails }} />;
         })}
       </ul>
     </>

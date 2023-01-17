@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-import Button from "components/uikit/Button";
+import Button from "components/Button";
 
 import DoNotDisturbIcon from "@mui/icons-material/DoNotDisturb";
 

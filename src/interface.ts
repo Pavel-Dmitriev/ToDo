@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import { IOption } from "components/uikit/Select/interface";
+
+import { IOption } from "components/Select/interface";
 
 export interface ITodoItem {
   id: string | null;
@@ -8,7 +9,7 @@ export interface ITodoItem {
   categories?: IOption[] | null;
   reminder?: IReminder | null;
   done: boolean;
-  markCompletionTodo?: () => void;
+  onMarkCompletionTodo?: () => void;
   isOpen: boolean;
   toggleTodoDetails?: () => {};
   createdAt: Date | string | null;

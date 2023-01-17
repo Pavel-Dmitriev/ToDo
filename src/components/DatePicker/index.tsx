@@ -5,7 +5,7 @@ import CalendarToday from "@mui/icons-material/CalendarToday";
 
 import { StyledDatePicker } from "./styles";
 
-import LabelInput from "components/uikit/LabelInput";
+import LabelInput from "components/LabelInput";
 
 import useErrorText from "hooks/useErrorText";
 

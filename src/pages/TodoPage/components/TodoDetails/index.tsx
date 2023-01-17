@@ -3,7 +3,7 @@ import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import clsx from "clsx";
 import dayjs from "dayjs";
 
-import Button from "components/uikit/Button";
+import Button from "components/Button";
 
 import TextareaWrapper from "./components/TextAreaWrapper";
 import TodoReminder from "./components/TodoReminder";
@@ -18,7 +18,7 @@ import { updateTodo } from "store";
 
 import { DEFAULT_VALUES } from "./constants";
 
-import { IOption } from "components/uikit/Select/interface";
+import { IOption } from "components/Select/interface";
 import { IFormValues, ITodoDetails } from "./interface";
 import { IReminder, ITodoItem } from "interface";
 
@@ -85,7 +85,7 @@ function TodoDetails(props: ITodoDetails) {
     <FormProvider {...methods}>
       <Aside
         className={clsx(
-          "duration-1500 justiAlso for events instead of React.SyntheticEvent, you can also type them as following: Event, MouseEvent, KeyboardEvent...etc, depends on the use case of the handler.fy-between flex flex-1 flex-col bg-gray transition-[max-width] ease-in",
+          "duration-1500 flex flex-1 flex-col justify-between bg-gray transition-[max-width] ease-in",
           {
             "max-w-[360px]": isOpen,
             "max-w-0": !isOpen,
@@ -101,22 +101,27 @@ function TodoDetails(props: ITodoDetails) {
             name="title"
             placeholder="Добавить название дела"
           />
+
           <TodoCategory todoItem={todoItem} />
-          <TodoReminder todoItem={todoItem} />
+
+          <TodoReminder />
+
           <TextareaWrapper
             text={todoItem?.note as string}
             name="note"
             placeholder="Добавить заметку"
             className="min-h-[96px]"
           />
+
           <div className="mt-12 flex flex-1 justify-center">
             <Button
-              name="Отправить"
+              name="Добавить"
               className="transition-[background-color, color] flex-1 flex-col self-end border-1 border-blue bg-white duration-300 hover:bg-blue hover:text-white"
               disabled={!isDirty}
             />
           </div>
         </form>
+
         <FooterButtons
           todoItem={todoItem as ITodoItem}
           onClose={onClose}

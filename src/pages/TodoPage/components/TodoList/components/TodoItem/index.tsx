@@ -18,7 +18,7 @@ function TodoItem(props: ITodoItemProps) {
     categories,
     reminder,
     done,
-    markCompletionTodo,
+    onMarkCompletionTodo,
     onToggleTodoDetails,
     isOpen,
   } = props;
@@ -32,13 +32,14 @@ function TodoItem(props: ITodoItemProps) {
         },
       )}
     >
-      <Span onClick={markCompletionTodo}>
+      <Span onClick={onMarkCompletionTodo}>
         {done && (
           <i className="flex items-center justify-center">
             <CheckIcon color="inherit" fontSize="inherit" />
           </i>
         )}
       </Span>
+
       <div className="cursor-pointer">
         <button
           className={clsx({ "text-gray-300 line-through decoration-gray-300": props.done })}
@@ -46,11 +47,14 @@ function TodoItem(props: ITodoItemProps) {
         >
           <span>{title}</span>
         </button>
+
         <div className="grid grid-flow-col items-center gap-x-12">
           {note && <TodoNoteItem note={note} />}
+
           {(reminder?.name || reminder?.date || reminder?.time) && (
             <TodoReminderItem reminder={reminder} />
           )}
+
           {!isEmpty(categories) && (
             <TodoCategoryItem options={categories} className="grid grid-flow-col gap-x-8 pb-4" />
           )}

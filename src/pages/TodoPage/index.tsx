@@ -17,7 +17,7 @@ function TodoPage() {
     openTodoDetails(item);
   };
 
-  const handleDeleteTodo = () => {
+  const onDeleteTodo = () => {
     deleteTodo(activeId);
     setIsOpen(false);
   };
@@ -32,15 +32,17 @@ function TodoPage() {
         <div className="mb-12 rounded-4 bg-white p-12">
           <FormTextInput />
         </div>
+
         <div>
           <TodoList onIsOpen={setIsOpen} onActiveId={setActiveId} />
         </div>
       </div>
+
       <TodoDetails
         isOpen={isOpen}
         id={activeId}
         onClose={onCloseTodoDetails}
-        onDeleteTodo={handleDeleteTodo}
+        onDeleteTodo={onDeleteTodo}
       />
     </>
   );

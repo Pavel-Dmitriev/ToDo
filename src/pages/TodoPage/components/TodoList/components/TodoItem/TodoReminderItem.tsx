@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import dayjs from "dayjs";
 
-import NotificationIcon from "components/uikit/icons/NotificationIcon";
+import NotificationIcon from "components/icons/NotificationIcon";
 
 import { IReminder } from "interface";
 
@@ -29,6 +29,7 @@ function TodoReminderItem({ reminder }: { reminder: IReminder }) {
   return (
     <div className="flex">
       <NotificationIcon className="mr-4" />
+
       <div className="text-[10px] leading-[14px] text-primary">{reminderInfo}</div>
     </div>
   );

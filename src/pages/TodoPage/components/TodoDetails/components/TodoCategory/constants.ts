@@ -1,4 +1,4 @@
-import { IOption } from "components/uikit/Select/interface";
+import { IOption } from "components/Select/interface";
 
 export const OPTIONS: IOption[] = [
   { value: "blue", label: "Синяя категория" },

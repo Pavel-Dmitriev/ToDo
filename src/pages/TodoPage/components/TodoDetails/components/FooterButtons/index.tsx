@@ -1,5 +1,5 @@
 import DeleteIcon from "@mui/icons-material/Delete";
-import CloseCard from "components/uikit/icons/CloseCard";
+import CloseCard from "components/icons/CloseCard";
 
 import { IFooterButtons } from "./interface";
 
@@ -9,7 +9,9 @@ function FooterButtons({ todoItem, onClose, onDeleteTodo, createdAt }: IFooterBu
       <button onClick={() => onClose(todoItem!)}>
         <CloseCard />
       </button>
+
       <span className="text-2xs text-gray-300">Создано {createdAt}</span>
+
       <button onClick={() => onDeleteTodo(todoItem)}>
         <DeleteIcon fontSize="small" />
       </button>

@@ -1,6 +1,6 @@
 import { RegisterOptions } from "react-hook-form";
 
-import ITextInput from "components/uikit/TextInput/interface";
+import ITextInput from "components/TextInput/interface";
 
 export interface IProps extends ITextInput {
   label?: string;

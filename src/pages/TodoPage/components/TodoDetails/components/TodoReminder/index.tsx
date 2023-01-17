@@ -1,11 +1,9 @@
 import { useFormContext } from "react-hook-form";
 
-import TextInput from "components/uikit/TextInput";
-import DateAndTimeInput from "components/uikit/DateAndTimeInput";
+import TextInput from "components/TextInput";
+import DateAndTimeInput from "components/DateAndTimeInput";
 
-import { ITodoItem } from "interface";
-
-function TodoReminder({ todoItem }: { todoItem?: ITodoItem }) {
+function TodoReminder() {
   const { register } = useFormContext();
 
   return (

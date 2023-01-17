@@ -1,8 +1,8 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 
-import LabelInput from "components/uikit/LabelInput";
-import TextInput from "components/uikit/TextInput";
-import Button from "components/uikit/Button";
+import LabelInput from "components/LabelInput";
+import TextInput from "components/TextInput";
+import Button from "components/Button";
 
 import { addTodo } from "store";
 
@@ -35,14 +35,14 @@ function FormTextInput() {
     reset({ title: "" });
   };
 
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLFormElement>) => {
+  const onKeyPress = (event: React.KeyboardEvent<HTMLFormElement>) => {
     if (event.key === "Enter") {
       handleSubmit(addTodo);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyPress}>
+    <form onSubmit={handleSubmit(onSubmit)} onKeyDown={onKeyPress}>
       <LabelInput
         error={Boolean(errors?.title)}
         errorText={errorText}
