@@ -1,4 +1,5 @@
 {
+  "homepage": "https://Pavel-Dmitriev.github.io/ToDo",
   "name": "to-do-react-effector-ts",
   "version": "0.1.0",
   "private": true,
@@ -37,7 +38,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "prettier": "prettier --write src/"
+    "prettier": "prettier --write src/",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -62,6 +65,7 @@
     "@types/react-datetime-picker": "^3.4.1",
     "autoprefixer": "^10.4.13",
     "effector-logger": "^0.13.6",
+    "gh-pages": "^4.0.0",
     "postcss": "^8.4.21",
     "prettier": "2.8.2",
     "tailwindcss": "^3.2.4"
