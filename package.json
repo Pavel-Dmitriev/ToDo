@@ -39,9 +39,9 @@
     "eject": "react-scripts eject",
     "prettier": "prettier --write src/",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -b master -d build"
+    "deploy": "gh-pages -d build"
   },
-  "homepage": "https://Pavel-Dmitriev.github.io/ToDo/build/index.html",
+  "homepage": "https://Pavel-Dmitriev.github.io/ToDo",
   "eslintConfig": {
     "extends": [
       "react-app",
