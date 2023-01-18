@@ -41,7 +41,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -b master -d build"
   },
-  "homepage": "https://Pavel-Dmitriev.github.io/ToDo/build",
+  "homepage": "https://Pavel-Dmitriev.github.io/ToDo/build/index.html",
   "eslintConfig": {
     "extends": [
       "react-app",
