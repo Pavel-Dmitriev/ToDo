@@ -17,7 +17,7 @@ function NoMatch() {
       </p>
 
       <div className="flex justify-center">
-        <Button name="На главную" onClick={() => navigate("/ToDo")} />
+        <Button name="На главную" onClick={() => navigate("/")} />
       </div>
     </div>
   );
