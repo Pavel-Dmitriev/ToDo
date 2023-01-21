@@ -8,7 +8,7 @@ import TextGreeting from "pages/TextGreeting";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/ToDo",
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
