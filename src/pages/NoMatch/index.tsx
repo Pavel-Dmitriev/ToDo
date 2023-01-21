@@ -6,9 +6,8 @@ import DoNotDisturbIcon from "@mui/icons-material/DoNotDisturb";
 
 function NoMatch() {
   const navigate = useNavigate();
-
   return (
-    <div title={"Страница не найдена"} className="p-24 pt-60 pb-80">
+    <div title={"Страница не найдена"} className="w-full p-24 pt-60 pb-80">
       <div className="mb-36 flex justify-center">
         <DoNotDisturbIcon className="!h-[232px] !w-[318px] text-red-700" />
       </div>
@@ -16,8 +15,9 @@ function NoMatch() {
       <p className="mb-40 text-center text-lg">
         К сожалению, не смогли найти запрашиваемую вами страницу
       </p>
+
       <div className="flex justify-center">
-        <Button name="Назад" onClick={() => navigate(-1)} />
+        <Button name="На главную" onClick={() => navigate("/")} />
       </div>
     </div>
   );
